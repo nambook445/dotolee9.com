@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import { alpha } from '@mui/material/styles';
 import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '@mui/material';
@@ -12,7 +12,7 @@ import account from '../../_mocks_/account';
 import axios from 'axios';
 
 // ----------------------------------------------------------------------
-
+const navigate = useNavigate;
 const MENU_OPTIONS = [
   {
     label: 'Home',

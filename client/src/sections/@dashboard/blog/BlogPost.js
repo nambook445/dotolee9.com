@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { alpha, styled } from '@mui/material/styles';
@@ -6,9 +6,7 @@ import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@mui/mat
 
 //
 import SvgIconStyle from '../../../components/SvgIconStyle';
-import Iconify from '../../../components/Iconify';
 
-import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 const CardMediaStyle = styled('div')({
@@ -49,16 +47,10 @@ const CoverImgStyle = styled('img')({
   position: 'absolute'
 });
 
-// ----------------------------------------------------------------------
-BlogPost.propTypes = {
-  post: PropTypes.object.isRequired,
-  index: PropTypes.number
-};
-
 export default function BlogPost(post, index) {
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
-  console.log(post.id);
+
   function CoverImg(image) {
     if (image.image !== null) {
       return (

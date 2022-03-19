@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link as RouterLink, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 // material
 import {
   Typography,
@@ -74,19 +74,22 @@ export default function TopicPage() {
   // SweetAlert2
   const MySwal = withReactContent(Swal);
 
-  useEffect(async () => {
-    await axios
-      .post('http://localhost:8080/api/topic', params, {
-        withCredentials: true
-      })
-      .then((res) => {
-        setId(res.data[0].id);
-        setTitle(res.data[0].title);
-        handleOnChange(res.data[0].description);
-        setImageFileNameFromServer(res.data[0].image);
-      })
-      .catch((err) => err.response);
-  }, []);
+  useEffect(() => {
+    async function fetchData() {
+      await axios
+        .post('http://localhost:8080/api/topic', params, {
+          withCredentials: true
+        })
+        .then((res) => {
+          setId(res.data[0].id);
+          setTitle(res.data[0].title);
+          handleOnChange(res.data[0].description);
+          setImageFileNameFromServer(res.data[0].image);
+        })
+        .catch((err) => err.response);
+    }
+    fetchData();
+  }, [params]);
   console.log(title);
   const Input = styled('input')({
     display: 'none'
@@ -123,29 +126,24 @@ export default function TopicPage() {
     data.set('description', desc);
     data.set('imageFileNameFromServer', imageFileNameFromServer);
 
-    for (var pair of data.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
-
     await axios
       .put('http://localhost:8080/api/topic', data, {
         withCredentials: true
       })
       .then((res) => {
         console.log(res);
-        // MySwal.fire({
-        //   icon: 'success',
-        //   title: '수정완료',
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // }).then((document.location = 'http://localhost:3000/blog'));
+        MySwal.fire({
+          icon: 'success',
+          title: '수정완료',
+          showConfirmButton: false,
+          timer: 1500
+        }).then((document.location = 'http://localhost:3000/blog'));
       })
-      .catch(
-        (err) => console.log(err.response)
-        // MySwal.fire({
-        //   icon: 'error',
-        //   title: JSON.stringify(err.response)
-        // })
+      .catch((err) =>
+        MySwal.fire({
+          icon: 'error',
+          title: JSON.stringify(err.response)
+        })
       );
   };
 

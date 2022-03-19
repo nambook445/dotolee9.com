@@ -14,15 +14,20 @@ import axios from 'axios';
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [status, setStatus] = useState(false);
-  useEffect(async () => {
-    await axios
-      .get('http://localhost:8080/api')
-      .then((res) => setPosts(res.data))
-      .then((res) => setStatus(true))
-      .catch((err) => err.response);
+  useEffect(() => {
+    async function fetchData() {
+      await axios
+        .get('http://localhost:8080/api')
+        .then((res) => {
+          setPosts(res.data);
+          setStatus(true);
+        })
+        .catch((err) => err.response);
+    }
+    fetchData();
+    console.log(fetchData());
   }, []);
 
-  console.log(posts);
   return (
     <Page title="Dashboard: Blog | Minimal-UI">
       <Container>

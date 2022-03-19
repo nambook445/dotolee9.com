@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
