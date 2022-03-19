@@ -1,0 +1,30 @@
+extends ./layout.pug
+block content
+	table.table.bg-light.table-responsive.table-hover.table.caption-top
+		caption List of users
+		thead.table-success
+			tr
+				th(scope='col') 번호
+				th(scope='col') 제목
+				th(scope='col') 작성자
+				th(scope='col') 작성시간
+		tbody
+			-for(i=0;i<results.length;i++)
+				tr
+					th(scope='row') #{results[i].id}
+					td
+						a(href=`/page/${results[i].id}`) #{results[i].title}
+					td #{results[i].nickname}
+					td #{results[i].created}
+	.container
+		nav(aria-label='Page navigation example')
+			ul.pagination.justify-content-center
+				li.page-item
+					a.page-link(href=`/board/${startPage-1}` aria-label='Previous')
+						span(aria-hidden='true') «
+				-for(i=startPage;i<=endPage&&i<=totalPage;i++)
+						li.page-item
+						a.page-link(href=`/board/${i}`) #{i}
+				li.page-item
+					a.page-link(href=`/board/${endPage+1}` aria-label='Next')
+						span(aria-hidden='true') »

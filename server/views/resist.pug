@@ -1,0 +1,17 @@
+extends ./layout.pug
+block style
+	link(href='/css/signin.css' rel='stylesheet')
+block content
+	form.form-signin(action='/resist' method='post')
+		h1.h3.mb-3.fw-normal Please sign in
+		.form-floating
+			input#floatingInput.form-control(name='username' type='text' placeholder='ID' required='')
+			label(for='floatingInput') ID
+		.form-floating
+			input#floatingPassword.form-control(name='password' type='password' placeholder='Password' required='')
+			label(for='floatingPassword') Password
+		.form-floating
+			input#floatinginput.form-control(name='nickname' type='text' placeholder='nickname' required='')
+			label(for='floatingInput') nickname
+		button.w-100.btn.btn-lg.btn-success(type='submit') 회원가입
+	p.mt-5.mb-3.text-muted © 2017–2021

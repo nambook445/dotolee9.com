@@ -1,0 +1,47 @@
+doctype html
+html.h-100(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1')
+		title Cover Template · Bootstrap v5.0
+		link(href='/css/bootstrap.min.css' rel='stylesheet')
+		link(href='/css/cover.css' rel='stylesheet')
+		block style
+		style.
+			.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+			}
+			@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+			font-size: 3.5rem;
+			}
+			}
+	body.d-flex.h-100.text-center.text-white.bg-dark
+		.cover-container.d-flex.w-100.h-100.p-3.mx-auto.flex-column
+			header.mb-auto
+				div
+					h3.float-md-start.mb-0 Cover
+					nav.nav.nav-masthead.justify-content-center.float-md-end
+						a.nav-link.active(aria-current='page' href='/') Home
+						a.nav-link(href='/board/1') Board
+						a.nav-link(href='/create') Create
+						!=loginStat
+			main.px-3
+				h1 Cover your page.
+				p.lead
+					| Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.
+				p.lead
+					a.btn.btn-lg.btn-secondary.fw-bold.border-white.bg-white(href='#') Learn more
+			section 
+				block content	
+			footer.mt-auto.text-white-50
+				p
+					| Cover template for 
+					a.text-white(href='https://getbootstrap.com/') Bootstrap
+					| , by 
+					a.text-white(href='https://twitter.com/mdo') @mdo
+					| .

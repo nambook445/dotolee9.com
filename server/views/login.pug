@@ -1,0 +1,18 @@
+extends ./layout.pug
+block style
+	link(href='/css/signin.css' rel='stylesheet')
+block content
+	form.form-signin(action='/login' method='post')
+		h1.h3.mb-3.fw-normal Please sign in
+		.form-floating
+			input#floatingInput.form-control(name='username' type='text' placeholder='ID' autocomplete='username' required='')
+			label(for='floatingInput') ID
+		.form-floating
+			input#floatingPassword.form-control(name='password' type='password' placeholder='Password' required='')
+			label(for='floatingPassword') Password
+		.checkbox.mb-3
+			label
+		button.w-100.btn.btn-lg.btn-primary(type='submit') Login
+	form.form-signin(action='/resist')
+		button.w-100.btn.btn-lg.btn-success(type='submit') Sign Up
+	p.mt-5.mb-3.text-muted © 2017–2021
