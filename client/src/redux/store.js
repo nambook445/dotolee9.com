@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const initState = {
-  mode: 'wellcom',
+  isLogin: false,
   user: {
     id: '',
     username: '',
@@ -20,7 +20,13 @@ const initState = {
 };
 
 function reducer(state = initState, action) {
+  if (action.type === 'LOGIN') {
+    return { ...state, isLogin: action.isLogin };
+  }
   return state;
 }
 
-export default createStore(reducer);
+export default createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);

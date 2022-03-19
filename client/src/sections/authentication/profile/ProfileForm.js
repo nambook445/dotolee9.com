@@ -13,8 +13,10 @@ import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
 //----------------------------------------------------------------------
+// import { connect } from 'react-redux';
+//
 
-export default function ProfileForm() {
+export default function ProfileForm(props) {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   // SweetAlert2
@@ -137,8 +139,23 @@ export default function ProfileForm() {
           >
             정보 수정하기
           </LoadingButton>
+          <button
+            onClick={() => {
+              props.onClick();
+            }}
+          >
+            로그인테스트
+          </button>
         </Stack>
       </Form>
     </FormikProvider>
   );
 }
+
+// export default connect(null, function (dispatch) {
+//   return {
+//     onClick: function () {
+//       dispatch({ type: 'LOGIN', isLogin: true });
+//     }
+//   };
+// })(ProfileForm);

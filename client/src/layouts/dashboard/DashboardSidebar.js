@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
@@ -42,7 +42,7 @@ DashboardSidebar.propTypes = {
 };
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
-  // const { pathname } = useLocation(); react router dom ==>useLocation 왜있는 지 모르겠음
+  const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
 
@@ -50,8 +50,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
     if (isOpenSidebar) {
       onCloseSidebar();
     }
-  });
-  // , [pathname]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
   const renderContent = (
     <Scrollbar
       sx={{

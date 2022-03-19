@@ -12,7 +12,8 @@ import reportWebVitals from './reportWebVitals';
 
 // redux
 // import { createStore } from 'redux';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 // import { composeWithDevTools } from 'redux-devtools-extension'; // 리덕스 개발자 도구
 
 // const store = createStore(rootReducer, composeWithDevTools()); // 스토어를 만듭니다.
@@ -22,7 +23,9 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <HelmetProvider>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </HelmetProvider>,
   document.getElementById('root')
