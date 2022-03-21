@@ -14,9 +14,6 @@ import reportWebVitals from './reportWebVitals';
 // import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-// import { composeWithDevTools } from 'redux-devtools-extension'; // 리덕스 개발자 도구
-
-// const store = createStore(rootReducer, composeWithDevTools()); // 스토어를 만듭니다.
 // import rootReducer from './modules'; redux라우터인듯
 // ----------------------------------------------------------------------
 

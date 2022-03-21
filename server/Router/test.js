@@ -21,6 +21,16 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+router.get("/profile", (req, res) => {
+  console.log("hi");
+  const sql = `SELECT id, username, nickname, image FROM users WHERE id=?`;
+  db.query(sql, [1], (err, results) => {
+    const data = results;
+    console.log(results);
+    res.json(data);
+  });
+});
+
 router.get("/", (req, res) => {
   const sql = `SELECT topic.id, topic.title, topic.description, DATE_FORMAT(topic.created, '%Y-%m-%d') AS created, topic.image, users.nickname, users.image AS profile FROM topic LEFT JOIN users ON topic.user_id = users.id ORDER BY topic.id DESC `;
   db.query(sql, (err, results) => {
@@ -80,7 +90,6 @@ router.post("/paper", upload.single("post_image"), (req, res) => {
 
 // 청소를 잘하자 진짜 어지러우니까
 router.put("/topic", upload.single("post_image"), (req, res) => {
-  console.log(req.body);
   if (req.body.post_image == "null") {
     const sql = `UPDATE topic SET title=?, description=? WHERE id=?`;
     db.query(
@@ -91,7 +100,6 @@ router.put("/topic", upload.single("post_image"), (req, res) => {
       }
     );
   } else if (req.file.filename) {
-    console.log("너가 왜나와");
     const sql = `UPDATE topic SET title=?, description=?, image=? WHERE id=?`;
     db.query(
       sql,

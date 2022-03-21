@@ -101,9 +101,7 @@ passport.use(
   })
 );
 
-app.use("/api", test, (req, res) => {
-  console.log(req);
-});
+app.use("/api", test, (req, res) => {});
 
 app.get("/fetch", (req, res) => res.render("fetch"));
 
@@ -232,14 +230,13 @@ app.post("/delete", (req, res) => {
 });
 
 app.post("/login", async function (req, res, next) {
+  console.log(req.body);
   await passport.authenticate("local", function (err, user, info) {
     if (err) return next(err);
     if (!user) return res.status(404).json(info);
     req.logIn(user, function (err) {
       if (err) return next(err);
-      return res.json({
-        user: req.user,
-      });
+      return res.json(req.user);
     });
   })(req, res, next);
 });

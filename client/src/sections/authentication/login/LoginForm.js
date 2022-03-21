@@ -21,10 +21,12 @@ import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
 // ----------------------------------------------------------------------
+import { useDispatch } from 'react-redux';
 
 export default function LoginForm() {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   // SweetAlert2
   const MySwal = withReactContent(Swal);
   // formik remember 사용법은 아직...
@@ -35,7 +37,7 @@ export default function LoginForm() {
       remember: true
     },
     onSubmit: async (value) => {
-      const data = {
+      let data = {
         username: value.username,
         password: value.password
       };
@@ -43,15 +45,31 @@ export default function LoginForm() {
         .post('http://localhost:8080/login', data, {
           withCredentials: true
         })
-        .then((res) => sessionStorage.setItem('user', res.data.user.nickname))
         .then((res) => {
+          console.log(res);
+          sessionStorage.setItem('user', res.data.nickname);
+          dispatch({
+            type: 'USER',
+            user: {
+              id: res.data.id,
+              username: res.data.username,
+              nickname: res.data.nickname,
+              image: res.data.image
+            }
+          });
+          dispatch({
+            type: 'LOGIN',
+            isLogin: true
+          });
+        })
+        .then(
           MySwal.fire({
             icon: 'success',
             title: '로그인 성공',
             showConfirmButton: false,
             timer: 1500
-          }).then(navigate('/app', { replace: true }));
-        })
+          }).then(navigate('/app', { replace: true }))
+        )
         .catch((err) =>
           MySwal.fire({
             icon: 'error',

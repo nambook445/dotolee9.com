@@ -1,2 +1,2 @@
-export { default as ProfileForm } from './ProfileForm';
-export { default as ProfilePhoto } from './ProfilePhoto';
+export { default as ProfileContainer } from './container/ProfileContainer';
+// export { default as ProfilePhoto } from './ProfilePhoto';

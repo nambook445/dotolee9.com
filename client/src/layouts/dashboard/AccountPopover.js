@@ -11,8 +11,9 @@ import account from '../../_mocks_/account';
 // axios
 import axios from 'axios';
 
+import { useSelector, useDispatch } from 'react-redux';
 // ----------------------------------------------------------------------
-const navigate = useNavigate;
+
 const MENU_OPTIONS = [
   {
     label: 'Home',
@@ -31,24 +32,12 @@ const MENU_OPTIONS = [
   }
 ];
 
-async function handleLogout() {
-  sessionStorage.removeItem('user');
-  await axios
-    .get('http://localhost:8080/logout', { withCredentials: true })
-    .then((res) => console.log(res).then(navigate('/dashboard/app', { replace: true })))
-    .catch((err) => console.log(err.response));
-}
-function LogoutButton() {
-  return (
-    <Button fullWidth color="inherit" variant="outlined" onClick={handleLogout}>
-      Logout
-    </Button>
-  );
-}
-
 export default function AccountPopover() {
+  const dispatch = useDispatch();
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const isLogin = useSelector((state) => state.isLogin);
+  console.log('hi', isLogin);
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,6 +45,37 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  function LoginButton() {
+    function handleLogin() {
+      document.location = 'http://localhost:3000/login';
+    }
+    return (
+      <Button fullWidth color="inherit" variant="outlined" onClick={handleLogin}>
+        Login
+      </Button>
+    );
+  }
+
+  function LogoutButton() {
+    async function handleLogout() {
+      sessionStorage.removeItem('user');
+      await axios
+        .get('http://localhost:8080/logout', { withCredentials: true })
+        .then(
+          dispatch({
+            type: 'LOGIN',
+            isLogin: false
+          })
+        )
+        .catch((err) => console.log(err.response));
+    }
+    return (
+      <Button fullWidth color="inherit" variant="outlined" onClick={handleLogout}>
+        Logout
+      </Button>
+    );
+  }
 
   return (
     <>
@@ -120,9 +140,7 @@ export default function AccountPopover() {
           </MenuItem>
         ))}
 
-        <Box sx={{ p: 2, pt: 1.5 }}>
-          <LogoutButton />
-        </Box>
+        <Box sx={{ p: 2, pt: 1.5 }}>{isLogin ? <LogoutButton /> : <LoginButton />}</Box>
       </MenuPopover>
     </>
   );

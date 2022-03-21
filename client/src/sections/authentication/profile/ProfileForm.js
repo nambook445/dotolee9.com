@@ -16,12 +16,13 @@ import Iconify from '../../../components/Iconify';
 // import { connect } from 'react-redux';
 //
 
-export default function ProfileForm(props) {
+export default function ProfileForm({ id, username, nickname }) {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   // SweetAlert2
   const MySwal = withReactContent(Swal);
-
+  console.log(id);
+  // console.log({ id, username, nickname, image });
   const RegisterSchema = Yup.object().shape({
     username: Yup.string()
       .min(6, 'ID는 6자리 이상이어야 합니다.')
@@ -88,6 +89,7 @@ export default function ProfileForm(props) {
             type="text"
             label="ID"
             {...getFieldProps('username')}
+            value={username}
             error={Boolean(touched.username && errors.username)}
             helperText={touched.username && errors.username}
           />
@@ -126,6 +128,7 @@ export default function ProfileForm(props) {
             type="text"
             label="NickName"
             {...getFieldProps('nickname')}
+            value={nickname}
             error={Boolean(touched.nickname && errors.nickname)}
             helperText={touched.nickname && errors.nickname}
           />
@@ -139,13 +142,6 @@ export default function ProfileForm(props) {
           >
             정보 수정하기
           </LoadingButton>
-          <button
-            onClick={() => {
-              props.onClick();
-            }}
-          >
-            로그인테스트
-          </button>
         </Stack>
       </Form>
     </FormikProvider>

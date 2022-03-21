@@ -1,31 +1,28 @@
 import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
+import { Box, Stack, IconButton, Typography, Avatar, styled } from '@mui/material';
 import axios from 'axios';
 
 const Input = styled('input')({
   display: 'none'
 });
-async function handleUpload(e) {
-  const formData = new FormData();
-  formData.append('profile_image', e.target.files[0]);
-  await axios
-    .post('http://localhost:8080/profile', formData, { withCredentials: true })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err.response));
-}
-const state = '';
-//mysql에 프로필사진 경로 등록하고 스테이트로 관리하기
-const profileName = `http://localhost:8080/images/profile/${state}`;
 
-export default function ProfilePhoto() {
+//mysql에 프로필사진 경로 등록하고 스테이트로 관리하기
+
+export default function ProfilePhoto({ image }) {
+  const profileImage = `http://localhost:8080/images/profile/${image}`;
+  async function handleUpload(e) {
+    const formData = new FormData();
+    formData.append('profile_image', e.target.files[0]);
+    await axios
+      .post('http://localhost:8080/profile', formData, { withCredentials: true })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err.response));
+  }
   return (
     <Stack>
-      <Avatar src={profileName} sx={{ width: 56, height: 56 }}></Avatar>
+      <Typography sx={{ color: 'text.secondary' }}>프로필사진</Typography>
+      <Avatar src={profileImage} sx={{ width: 56, height: 56 }}></Avatar>
       <Box>
         <label htmlFor="icon-button-file">
           <Input
