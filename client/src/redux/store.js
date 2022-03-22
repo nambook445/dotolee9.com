@@ -1,70 +1,18 @@
 import { createStore } from 'redux';
+import reducer from './modules';
 
-const initState = {
-  isLogin: false,
-  user: {
-    id: '',
-    username: '',
-    nickname: '',
-    image: ''
-  },
-  topic: {
-    id: '',
-    titile: '',
-    description: '',
-    created: '',
-    image: '',
-    userId: ''
-  },
-  selectedId: 1
-};
+import { persistStore } from 'redux-persist';
 
-const LOGIN = 'LOGIN';
-const USER = 'USER';
-const TOPIC = 'TOPIC';
-
-function login() {
-  return {
-    type: LOGIN
-  };
-}
-function user() {
-  return {
-    type: USER
-  };
-}
-function topic() {
-  return {
-    type: TOPIC
-  };
-}
-
-function reducer(state = initState, action) {
-  switch (action.type) {
-    case LOGIN:
-      return {
-        ...state,
-        ...action
-      };
-    case USER:
-      return {
-        ...state,
-        ...action
-      };
-    case TOPIC:
-      return {
-        ...state,
-        topic: state.topic
-      };
-    default:
-      return state;
-  }
-}
+const myReducer = reducer();
 
 const store = createStore(
-  reducer,
+  myReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+const persistor = persistStore(store);
+
+export { persistor };
 
 console.log(store.getState()); // 현재 store 안에 들어있는 상태를 조회합니다.
 
@@ -77,8 +25,4 @@ const listener = () => {
 const unsubscribe = store.subscribe(listener);
 // 구독을 해제하고 싶을 때는 unsubscribe() 를 호출하면 됩니다.
 
-// 액션들을 디스패치 해봅시다.
-store.dispatch(login());
-store.dispatch(user());
-store.dispatch(topic());
 export default store;

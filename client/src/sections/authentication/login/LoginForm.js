@@ -46,8 +46,6 @@ export default function LoginForm() {
           withCredentials: true
         })
         .then((res) => {
-          console.log(res);
-          sessionStorage.setItem('user', res.data.nickname);
           dispatch({
             type: 'USER',
             user: {

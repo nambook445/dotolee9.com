@@ -69,6 +69,7 @@
     "react-scripts": "^5.0.0",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "simplebar": "^5.3.6",
     "simplebar-react": "^2.3.6",
     "sweetalert2": "^11.4.4",

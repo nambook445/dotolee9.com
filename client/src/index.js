@@ -11,17 +11,17 @@ import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 
 // redux
-// import { createStore } from 'redux';
+import store,{ persistor } from './redux/store';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-// import rootReducer from './modules'; redux라우터인듯
-// ----------------------------------------------------------------------
-
+import { PersistGate } from 'redux-persist/integration/react';
+//----------------------------------------------------------------------
 ReactDOM.render(
   <HelmetProvider>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </HelmetProvider>,
