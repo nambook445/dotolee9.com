@@ -4,7 +4,7 @@ import Iconify from '../../components/Iconify';
 
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
-const sidebarConfig = [
+const unLoginedConfig = [
   {
     title: 'dashboard',
     path: '/app',
@@ -20,7 +20,6 @@ const sidebarConfig = [
     path: '/blog',
     icon: getIcon('eva:file-text-fill')
   },
-  // login 과 resister는 redux 도입 후에 로그인 상태 여부에 따라 렌더링 할 예정
   {
     title: 'login',
     path: '/login',
@@ -31,11 +30,6 @@ const sidebarConfig = [
     path: '/register',
     icon: getIcon('eva:person-add-fill')
   },
-  {
-    title: 'profile',
-    path: '/profile',
-    icon: getIcon('eva:person-fill')
-  }
   // 404 페이지
   // ,
   // {
@@ -57,4 +51,27 @@ const sidebarConfig = [
   // },
 ];
 
-export default sidebarConfig;
+const loginedConfig = [
+  {
+    title: 'dashboard',
+    path: '/app',
+    icon: getIcon('eva:pie-chart-2-fill')
+  },
+  {
+    title: 'paper',
+    path: '/paper',
+    icon: getIcon('jam:pen-f')
+  },
+  {
+    title: 'blog',
+    path: '/blog',
+    icon: getIcon('eva:file-text-fill')
+  },
+  {
+    title: 'profile',
+    path: '/profile',
+    icon: getIcon('eva:person-fill')
+  }
+];
+export { loginedConfig };
+export { unLoginedConfig };

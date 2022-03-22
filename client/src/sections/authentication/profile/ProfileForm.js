@@ -12,16 +12,18 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
+import { useSelector } from 'react-redux';
 //----------------------------------------------------------------------
 // import { connect } from 'react-redux';
 //
 
-export default function ProfileForm({ id, username, nickname }) {
+export default function ProfileForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   // SweetAlert2
   const MySwal = withReactContent(Swal);
-  console.log(id);
+  const { user } = useSelector((state) => state.userData);
+  console.log(user);
   // console.log({ id, username, nickname, image });
   const RegisterSchema = Yup.object().shape({
     username: Yup.string()
@@ -59,7 +61,7 @@ export default function ProfileForm({ id, username, nickname }) {
         .post('http://localhost:8080/resister', data, {
           withCredentials: true
         })
-        .then((res) => sessionStorage.setItem('user', res.data.user.username))
+
         .then((res) => {
           MySwal.fire({
             icon: 'success',
@@ -89,7 +91,7 @@ export default function ProfileForm({ id, username, nickname }) {
             type="text"
             label="ID"
             {...getFieldProps('username')}
-            value={username}
+            value={user.username}
             error={Boolean(touched.username && errors.username)}
             helperText={touched.username && errors.username}
           />
@@ -128,7 +130,7 @@ export default function ProfileForm({ id, username, nickname }) {
             type="text"
             label="NickName"
             {...getFieldProps('nickname')}
-            value={nickname}
+            value={user.nickname}
             error={Boolean(touched.nickname && errors.nickname)}
             helperText={touched.nickname && errors.nickname}
           />

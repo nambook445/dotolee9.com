@@ -2,6 +2,7 @@ import React from 'react';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Box, Stack, IconButton, Typography, Avatar, styled } from '@mui/material';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const Input = styled('input')({
   display: 'none'
@@ -9,8 +10,9 @@ const Input = styled('input')({
 
 //mysql에 프로필사진 경로 등록하고 스테이트로 관리하기
 
-export default function ProfilePhoto({ image }) {
-  const profileImage = `http://localhost:8080/images/profile/${image}`;
+export default function ProfilePhoto() {
+  const { user } = useSelector((state) => state.userData);
+  const profileImage = `http://localhost:8080/images/profile/${user.image}`;
   async function handleUpload(e) {
     const formData = new FormData();
     formData.append('profile_image', e.target.files[0]);

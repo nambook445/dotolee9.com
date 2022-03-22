@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Box, Link, Container, Typography } from '@mui/material';
 // components
 import Page from '../components/Page';
-import { ProfileContainer } from '../sections/authentication/profile';
+import { ProfileForm, ProfilePhoto } from '../sections/authentication/profile';
 
 // ----------------------------------------------------------------------
 
@@ -36,9 +36,8 @@ export default function Profile() {
               회원 정보
             </Typography>
           </Box>
-
-          <ProfileContainer />
-
+          <ProfilePhoto />
+          <ProfileForm />
           <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
             By registering, I agree to Minimal&nbsp;
             <Link underline="always" color="textPrimary">

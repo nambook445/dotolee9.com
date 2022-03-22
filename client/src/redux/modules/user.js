@@ -10,7 +10,6 @@ const initialState = {
   }
 };
 
-/* 리듀서 */
 export default function userData(state = initialState, action) {
   switch (action.type) {
     case USER:

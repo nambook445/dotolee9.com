@@ -6,7 +6,7 @@ import isLogined from './login';
 import userData from './user';
 
 const persistConfig = {
-  key: 'root',
+  key: 'user',
   storage,
   whitelist: ['isLogined', 'userData']
 };

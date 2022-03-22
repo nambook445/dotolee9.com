@@ -4,8 +4,6 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
-// mocks_
-import account from '../../_mocks_/account';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components
@@ -13,7 +11,8 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import sidebarConfig from './SidebarConfig';
+import { loginedConfig, unLoginedConfig } from './SidebarConfig';
+import { useSelector } from 'react-redux';
 
 // ----------------------------------------------------------------------
 
@@ -43,8 +42,9 @@ DashboardSidebar.propTypes = {
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
-
   const isDesktop = useResponsive('up', 'lg');
+  const { isLogin } = useSelector((state) => state.isLogined);
+  const { user } = useSelector((state) => state.userData);
 
   useEffect(() => {
     if (isOpenSidebar) {
@@ -64,22 +64,43 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
-        <Link underline="none" component={RouterLink} to="#">
-          <AccountStyle>
-            <Avatar src={account.photoURL} alt="photoURL" />
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
-              </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
-              </Typography>
-            </Box>
-          </AccountStyle>
-        </Link>
+        {isLogin ? (
+          <Link underline="none" component={RouterLink} to="#">
+            <AccountStyle>
+              <Avatar src={`http://localhost:8080/images/profile/${user.image}`} alt="photoURL" />
+              <Box sx={{ ml: 2 }}>
+                <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+                  {user.username}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  {user.nickname}
+                </Typography>
+              </Box>
+            </AccountStyle>
+          </Link>
+        ) : (
+          <Link underline="none" component={RouterLink} to="#">
+            <AccountStyle>
+              <Avatar
+                src={`http://localhost:8080/images/profile/profile_image-1647059124062.png`}
+                alt="photoURL"
+              />
+              <Box sx={{ ml: 2 }}>
+                <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+                  비회원
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}></Typography>
+              </Box>
+            </AccountStyle>
+          </Link>
+        )}
       </Box>
 
-      <NavSection navConfig={sidebarConfig} />
+      {isLogin ? (
+        <NavSection navConfig={loginedConfig} />
+      ) : (
+        <NavSection navConfig={unLoginedConfig} />
+      )}
 
       <Box sx={{ flexGrow: 1 }} />
 

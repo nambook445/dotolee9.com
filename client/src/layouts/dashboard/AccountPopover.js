@@ -6,38 +6,32 @@ import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '
 // components
 import Iconify from '../../components/Iconify';
 import MenuPopover from '../../components/MenuPopover';
-//
-import account from '../../_mocks_/account';
 // axios
 import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
 // ----------------------------------------------------------------------
 
-const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-    linkTo: '/'
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-    linkTo: '/profile'
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-    linkTo: '#'
-  }
-];
-
 export default function AccountPopover() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const isLogin = useSelector((state) => state.isLogin);
-  console.log('hi', isLogin);
+  const { isLogin } = useSelector((state) => state.isLogined);
+  const { user } = useSelector((state) => state.userData);
+
+  const MENU_OPTIONS = [
+    {
+      label: 'Home',
+      icon: 'eva:home-fill',
+      linkTo: '/'
+    },
+    {
+      label: 'Profile',
+      icon: 'eva:person-fill',
+      linkTo: '/profile'
+    }
+  ];
 
   const handleOpen = () => {
     setOpen(true);
@@ -48,7 +42,7 @@ export default function AccountPopover() {
 
   function LoginButton() {
     function handleLogin() {
-      document.location = 'http://localhost:3000/login';
+      navigate('login', { replace: true });
     }
     return (
       <Button fullWidth color="inherit" variant="outlined" onClick={handleLogin}>
@@ -59,16 +53,20 @@ export default function AccountPopover() {
 
   function LogoutButton() {
     async function handleLogout() {
-      sessionStorage.removeItem('user');
       await axios
         .get('http://localhost:8080/logout', { withCredentials: true })
         .then(
           dispatch({
             type: 'LOGIN',
             isLogin: false
+          }),
+          dispatch({
+            type: 'USER',
+            user: null
           })
         )
-        .catch((err) => console.log(err.response));
+        .catch((err) => console.log(err.response))
+        .then(navigate('app', { replace: true }));
     }
     return (
       <Button fullWidth color="inherit" variant="outlined" onClick={handleLogout}>
@@ -99,7 +97,14 @@ export default function AccountPopover() {
           })
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        {isLogin ? (
+          <Avatar src={`http://localhost:8080/images/profile/${user.image}`} alt="photoURL" />
+        ) : (
+          <Avatar
+            src={`http://localhost:8080/images/profile/profile_image-1647059124062.png`}
+            alt="photoURL"
+          />
+        )}
       </IconButton>
 
       <MenuPopover
@@ -109,17 +114,27 @@ export default function AccountPopover() {
         sx={{ width: 220 }}
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
-          <Typography variant="subtitle1" noWrap>
-            {account.displayName}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
-          </Typography>
+          {isLogin ? (
+            <Typography variant="subtitle1" noWrap>
+              {user.username}
+            </Typography>
+          ) : (
+            <Typography variant="subtitle1" noWrap>
+              비회원
+            </Typography>
+          )}
+          {isLogin ? (
+            <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+              {user.nickname}
+            </Typography>
+          ) : (
+            <Typography variant="subtitle1" noWrap></Typography>
+          )}
         </Box>
 
         <Divider sx={{ my: 1 }} />
 
-        {MENU_OPTIONS.map((option) => (
+        {(isLogin ? MENU_OPTIONS : []).map((option) => (
           <MenuItem
             key={option.label}
             to={option.linkTo}
