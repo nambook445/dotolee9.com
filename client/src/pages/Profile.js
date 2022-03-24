@@ -38,31 +38,6 @@ export default function Profile() {
           </Box>
           <ProfilePhoto />
           <ProfileForm />
-          <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-            By registering, I agree to Minimal&nbsp;
-            <Link underline="always" color="textPrimary">
-              가입약관
-            </Link>
-            &nbsp;and&nbsp;
-            <Link underline="always" color="textPrimary">
-              개인정보 관리 정책
-            </Link>
-            .
-          </Typography>
-
-          <Typography
-            variant="subtitle2"
-            sx={{
-              mt: 3,
-              textAlign: 'center',
-              display: { sm: 'none' }
-            }}
-          >
-            Already have an account?&nbsp;
-            <Link underline="hover" to="/login" component={RouterLink}>
-              Login
-            </Link>
-          </Typography>
         </ContentStyle>
       </Container>
     </RootStyle>
