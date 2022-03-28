@@ -23,7 +23,6 @@ export default function ProfileForm() {
   // SweetAlert2
   const MySwal = withReactContent(Swal);
   const { user } = useSelector((state) => state.userData);
-  console.log(user);
   // console.log({ id, username, nickname, image });
   const RegisterSchema = Yup.object().shape({
     username: Yup.string()

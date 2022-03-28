@@ -8,7 +8,8 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardMedia
+  CardMedia,
+  Container
 } from '@mui/material';
 // SweetAlert2
 import Swal from 'sweetalert2';
@@ -128,70 +129,76 @@ export default function PaperPage() {
 
   return (
     <Page title="Dashboard: Paper | Minimal-UI">
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
-        <Typography variant="h4" gutterBottom>
-          Paper
-        </Typography>
-        <label htmlFor="contained-button-file">
-          <Input
-            accept="image/*"
-            id="contained-button-file"
-            type="file"
-            onChange={handleChangeFile}
-          />
-          <Button variant="contained" component="span" startIcon={<Iconify icon="eva:plus-fill" />}>
-            Image
-          </Button>
-        </label>
-      </Stack>
-      <Stack sx={{ alignItems: 'center' }}>
-        <Card sx={{ width: '60vw', height: 'auto', justifyContent: 'center' }}>
-          <form onSubmit={handleSubmit} onKeyPress={handleOnKeyPress}>
-            <CardMedia
-              sx={{ width: '100%', height: 'auto' }}
-              component="img"
-              height="140"
-              src={imgBase64}
+      <Container>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
+          <Typography variant="h4" gutterBottom>
+            Paper
+          </Typography>
+          <label htmlFor="contained-button-file">
+            <Input
+              accept="image/*"
+              id="contained-button-file"
+              type="file"
+              onChange={handleChangeFile}
             />
-            <CardContent sx={{ py: 0 }}>
-              <TextField
-                id="standard-basic"
-                label="Title"
-                variant="standard"
-                size="small"
-                margin="normal"
-                fullWidth
-                autoComplete="off"
-                autoFocus={true}
-                color="grey"
-                required
+            <Button
+              variant="contained"
+              component="span"
+              startIcon={<Iconify icon="eva:plus-fill" />}
+            >
+              Image
+            </Button>
+          </label>
+        </Stack>
+        <Stack sx={{ alignItems: 'center' }}>
+          <Card sx={{ width: '60vw', height: 'auto', justifyContent: 'center' }}>
+            <form onSubmit={handleSubmit} onKeyPress={handleOnKeyPress}>
+              <CardMedia
+                sx={{ width: '100%', height: 'auto' }}
+                component="img"
+                height="140"
+                src={imgBase64}
               />
+              <CardContent sx={{ py: 0 }}>
+                <TextField
+                  id="standard-basic"
+                  label="Title"
+                  variant="standard"
+                  size="small"
+                  margin="normal"
+                  fullWidth
+                  autoComplete="off"
+                  autoFocus={true}
+                  color="grey"
+                  required
+                />
 
-              <ReactQuill
-                style={{ height: 'auto' }}
-                theme="snow"
-                modules={modules}
-                formats={formats}
-                value={desc}
-                required
-                onChange={handleOnChange}
-              />
-            </CardContent>
+                <ReactQuill
+                  style={{ height: 'auto' }}
+                  theme="snow"
+                  modules={modules}
+                  formats={formats}
+                  value={desc}
+                  required
+                  onChange={handleOnChange}
+                />
+              </CardContent>
 
-            <CardActions sx={{ p: 0, my: 1, justifyContent: 'center' }}>
-              <Button
-                fullWidth
-                size="small"
-                type="submit"
-                variant="contained"
-                sx={{ width: '30%' }}
-              >
-                확인
-              </Button>
-            </CardActions>
-          </form>
-        </Card>
-      </Stack>
+              <CardActions sx={{ p: 0, my: 1, justifyContent: 'center' }}>
+                <Button
+                  fullWidth
+                  size="small"
+                  type="submit"
+                  variant="contained"
+                  sx={{ width: '30%' }}
+                >
+                  확인
+                </Button>
+              </CardActions>
+            </form>
+          </Card>
+        </Stack>
+      </Container>
     </Page>
   );
 }
