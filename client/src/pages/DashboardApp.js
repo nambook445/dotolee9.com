@@ -71,13 +71,12 @@ export default function DashboardApp() {
           <Grid item xs={12} sm={6} md={3}>
             <AppBugReports />
           </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <AppOrderTimeline />
+          </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
             <AppNewsUpdate topic={[...descTopic]} />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppOrderTimeline />
           </Grid>
         </Grid>
       </Container>

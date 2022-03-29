@@ -31,7 +31,7 @@ function NewsItem(topic) {
   console.log(topic.created);
   return (
     <Stack>
-      <Box sx={{ minWidth: 240, display: 'inline-block' }}>
+      <Box sx={{ minWidth: 240 }}>
         <Link to={`/topic/${topic.id}`} color="inherit" underline="hover" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
             {topic.title}
@@ -49,18 +49,25 @@ function NewsItem(topic) {
 
 export default function AppNewsUpdate(props) {
   const [topic, setTopic] = useState([]);
+  const [topicLength, setTopicLength] = useState(5);
 
   useEffect(() => {
     setTopic(props.topic);
   }, [props.topic]);
+  console.log(topic.length);
+
+  function handleViewAll(e) {
+    e.preventDefault();
+    setTopicLength(topic.length);
+  }
 
   return (
     <Card>
-      <CardHeader title="News Update" />
+      <CardHeader title="New Update" />
 
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {topic.map((item) => (
+          {topic.slice(0, topicLength).map((item) => (
             <NewsItem
               key={item.id}
               id={item.id}
@@ -81,6 +88,7 @@ export default function AppNewsUpdate(props) {
           color="inherit"
           component={RouterLink}
           endIcon={<Iconify icon="eva:arrow-ios-forward-fill" />}
+          onClick={handleViewAll}
         >
           View all
         </Button>
