@@ -4,6 +4,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import isLogined from './login';
 import userData from './user';
+// import callTopic from './topic';
 
 const persistConfig = {
   key: 'user',

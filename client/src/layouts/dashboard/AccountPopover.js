@@ -62,7 +62,12 @@ export default function AccountPopover() {
           }),
           dispatch({
             type: 'USER',
-            user: null
+            user: {
+              id: '',
+              username: '',
+              nickname: '',
+              image: ''
+            }
           })
         )
         .catch((err) => console.log(err.response))

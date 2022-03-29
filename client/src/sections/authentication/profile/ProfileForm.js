@@ -67,7 +67,7 @@ export default function ProfileForm() {
             title: `환영합니다. ${res.data.user.nickname}`,
             showConfirmButton: false,
             timer: 1500
-          }).then(navigate('/dashboard/app', { replace: true }));
+          }).then(navigate('/app', { replace: true }));
         })
         .catch((err) =>
           MySwal.fire({
@@ -148,11 +148,3 @@ export default function ProfileForm() {
     </FormikProvider>
   );
 }
-
-// export default connect(null, function (dispatch) {
-//   return {
-//     onClick: function () {
-//       dispatch({ type: 'LOGIN', isLogin: true });
-//     }
-//   };
-// })(ProfileForm);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 // material
 import {
@@ -13,6 +14,9 @@ import {
   Container,
   Switch
 } from '@mui/material';
+
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 // SweetAlert2
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -82,6 +86,7 @@ export default function TopicPage() {
   // SweetAlert2
   const MySwal = withReactContent(Swal);
   const { user } = useSelector((state) => state.userData);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -147,7 +152,7 @@ export default function TopicPage() {
           title: '수정완료',
           showConfirmButton: false,
           timer: 1500
-        }).then((document.location = 'http://localhost:3000/blog'));
+        }).then(navigate('/blog'));
       })
       .catch((err) =>
         MySwal.fire({
@@ -182,14 +187,49 @@ export default function TopicPage() {
       );
     }
   }
-  console.log(checked);
+  const handleDelete = (e) => {
+    e.preventDefault();
+    MySwal.fire({
+      icon: 'warning',
+      title: '정말 삭제하시겠습니까?',
+      showCancelButton: true,
+      reverseButtons: true,
+      confirmButtonColor: 'green',
+      cancelButtonColor: '#d33'
+    })
+      .then((result) => {
+        console.log(result);
+        if (result.isConfirmed) {
+          const topicDelete = async () => {
+            await axios
+              .delete('http://localhost:8080/api/topic', {
+                withCredentials: true,
+                data: {
+                  id: id
+                }
+              })
+              .then((res) => {
+                MySwal.fire({
+                  icon: 'success',
+                  title: '삭제완료',
+                  showConfirmButton: false,
+                  timer: 1500
+                })((document.location = 'http://localhost:3000/blog'));
+              })
+              .catch((err) => console.log(err.response));
+          };
+          return topicDelete();
+        }
+      })
+      .catch((err) => err.response);
+  };
+
   // Enter키로 submit되는 상황방지
   const handleOnKeyPress = (e) => {
     if (e.code === 'Enter') {
       e.preventDefault();
     }
   };
-  console.log(user.id === Number(userId));
   return (
     <Page title="Dashboard: Paper | Minimal-UI">
       <Container userId={userId}>
@@ -198,6 +238,12 @@ export default function TopicPage() {
         ) : (
           <Switch disabled />
         )}
+        {user.id === Number(userId) && checked ? (
+          <IconButton aria-label="delete" size="large">
+            <DeleteIcon onClick={handleDelete} />
+          </IconButton>
+        ) : null}
+
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
           <Typography variant="h4" gutterBottom>
             Paper
@@ -294,7 +340,6 @@ export default function TopicPage() {
                     color="grey"
                     value={title}
                     disabled
-                    onChange={(e) => setTitle(e.target.value)}
                   />
 
                   <ReactQuill

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // material
 import {
   Typography,
@@ -65,6 +66,9 @@ export default function PaperPage() {
   const [desc, setdesc] = useState('');
   const [imgBase64, setImgBase64] = useState(null); // 파일 base64
   const [imgFile, setImgFile] = useState(null); //파일
+
+  const navigate = useNavigate();
+
   const Input = styled('input')({
     display: 'none'
   });
@@ -110,7 +114,7 @@ export default function PaperPage() {
           title: '작성완료',
           showConfirmButton: false,
           timer: 1500
-        }).then((document.location = 'http://localhost:3000/blog'));
+        }).then(navigate('/blog'));
       })
       .catch(
         (err) => console.log(err.response)

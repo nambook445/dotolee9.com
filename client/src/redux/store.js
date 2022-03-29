@@ -19,7 +19,6 @@ console.log(store.getState()); // 현재 store 안에 들어있는 상태를 조
 // 스토어안에 들어있는 상태가 바뀔 때 마다 호출되는 listener 함수
 const listener = () => {
   const state = store.getState();
-  console.log(state);
 };
 
 const unsubscribe = store.subscribe(listener);

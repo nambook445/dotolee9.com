@@ -4,6 +4,7 @@ const db = require("../model/db.js");
 const fs = require("fs");
 const multer = require("multer"); // 이미지 업로드
 const path = require("path");
+
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
     callBack(null, "./public/images/post"); // './public/images/' directory name where save the file
@@ -46,23 +47,6 @@ router.post("/topic", (req, res) => {
     res.json(data);
   });
 });
-
-// router.post(
-//   "/post_image",
-//   upload.single("post_image"),
-//   function (req, res, next) {
-//     console.log(req);
-//     console.log(req.file);
-//     const post_image = req.file.filename;
-//     const update_sql = `UPDATE topic SET image=? WHERE id=?`;
-//     db.query(update_sql, [post_image, req.user], function (err, results) {
-//       if (err) throw err;
-//     });
-//     res.json({
-//       fileName: req.file.filename,
-//     });
-//   }
-// );
 
 router.post("/paper", upload.single("post_image"), (req, res) => {
   if (req.file) {
@@ -129,13 +113,28 @@ router.put("/topic", upload.single("post_image"), (req, res) => {
   }
 });
 
-router.delete("/", (req, res) => {
+router.delete("/topic", (req, res) => {
+  console.log(req.body);
   const sql = `DELETE FROM topic WHERE id = ?`;
   db.query(sql, [req.body.id], (err, results) => {
     if (err) {
       throw err;
     }
     res.send("ok");
+  });
+});
+router.get("/topic", (req, res) => {
+  console.log(req.user);
+  const sql = `SELECT * FROM topic WHERE user_id = ?`;
+  db.query(sql, [req.user], (err, results) => {
+    if (err) {
+      throw err;
+    }
+    console.log(results.length);
+    res.send({
+      topic: results,
+      length: results.length,
+    });
   });
 });
 
