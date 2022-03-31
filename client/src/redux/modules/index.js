@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
+import storageSession from 'redux-persist/lib/storage/session';
 
-import storage from 'redux-persist/lib/storage';
 import isLogined from './login';
 import userData from './user';
-// import callTopic from './topic';
 
 const persistConfig = {
   key: 'user',
-  storage,
+  storage: storageSession,
   whitelist: ['isLogined', 'userData']
 };
 

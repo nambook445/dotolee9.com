@@ -15,6 +15,8 @@ import {
 
 import axios from 'axios';
 
+import { differenceInDays, parseISO } from 'date-fns';
+
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
@@ -22,28 +24,33 @@ export default function DashboardApp() {
   const { user } = useSelector((state) => state.userData);
   const [topic, setTopic] = useState([]);
   const [topicLength, setTopicLength] = useState(0);
-  const [status, setStatus] = useState(false);
-
+  const [succession, setSuccession] = useState(0);
   useEffect(() => {
     const callTopicState = async () => {
       await axios
         .get('http://localhost:8080/api/topic', {
-          withCredentials: true,
-          data: {
-            id: user.id
-          }
+          params: { id: user.id },
+          withCredentials: true
         })
         .then((res) => {
+          let myData = res.data.topic.map((key) => key.created);
           setTopic(res.data.topic);
           setTopicLength(Number(res.data.length));
-          setStatus(true);
+          setSuccession(() => {
+            let j = 0;
+            for (let i = 0; i < myData.length - 1; i++) {
+              if (differenceInDays(parseISO(myData[i + 1]), parseISO(myData[i])) === 1) {
+                j++;
+              }
+            }
+            return j;
+          });
         })
         .catch((err) => err.response);
     };
     callTopicState();
-  }, [user.id]);
+  }, [user]); // eslint-disable-line
 
-  // 내림차순으로 정렬 원본 배열을 훼손하지 말자
   let descTopic = [...topic].sort(function (a, b) {
     return b.id - a.id;
   });
@@ -63,20 +70,17 @@ export default function DashboardApp() {
             <AppWeeklySales topicLength={topicLength} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppNewUsers />
+            <AppNewUsers succession={succession} />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppItemOrders />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppBugReports />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <AppOrderTimeline />
+          <Grid item xs={12} sm={6} md={6}>
+            <AppItemOrders topicLength={topicLength} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
             <AppNewsUpdate topic={[...descTopic]} />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <AppOrderTimeline />
           </Grid>
         </Grid>
       </Container>

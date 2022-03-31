@@ -1,8 +1,6 @@
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
-// component
-import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 
@@ -35,9 +33,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 export default function AppWeeklySales({ topicLength }) {
   return (
     <RootStyle>
-      <IconWrapperStyle>
-        <Iconify icon="ant-design:android-filled" width={24} height={24} />
-      </IconWrapperStyle>
+
       <Typography variant="h3">{topicLength}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         내가 쓴 글

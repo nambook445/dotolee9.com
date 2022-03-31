@@ -11,24 +11,7 @@ import { formatDistanceToNow, parseISO } from 'date-fns';
 
 // ----------------------------------------------------------------------
 
-// const NEWS = [...Array(5)].map((_, index) => {
-//   const setIndex = index + 1;
-//   return {
-//     title: faker.name.title(),
-//     description: faker.lorem.paragraphs(),
-//     image: mockImgCover(setIndex),
-//     postedAt: faker.date.soon()
-//   };
-// });
-
-// ----------------------------------------------------------------------
-
-// NewsItem.propTypes = {
-//   news: PropTypes.object.isRequired
-// };
-
 function NewsItem(topic) {
-  console.log(topic.created);
   return (
     <Stack>
       <Box sx={{ minWidth: 240 }}>
@@ -54,7 +37,6 @@ export default function AppNewsUpdate(props) {
   useEffect(() => {
     setTopic(props.topic);
   }, [props.topic]);
-  console.log(topic.length);
 
   function handleViewAll(e) {
     e.preventDefault();
@@ -63,7 +45,7 @@ export default function AppNewsUpdate(props) {
 
   return (
     <Card>
-      <CardHeader title="New Update" />
+      <CardHeader title="내가 쓴 글" />
 
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
