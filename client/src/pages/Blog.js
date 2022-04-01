@@ -13,20 +13,19 @@ import axios from 'axios';
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
-  const [status, setStatus] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    async function fetchData() {
-      await axios
-        .get('http://localhost:8080/api')
-        .then((res) => {
-          setPosts(res.data);
-          setStatus(true);
-        })
-        .catch((err) => err.response);
-    }
-    fetchData();
-    console.log(fetchData());
+    setLoading(false);
+    axios
+      .get('http://localhost:8080/api')
+      .then((res) => {
+        setPosts(res.data);
+        setLoading(false);
+      })
+      .catch((err) => err.response);
   }, []);
+  console.log(posts);
 
   return (
     <Page title="Dashboard: Blog | Minimal-UI">
@@ -47,18 +46,20 @@ export default function Blog() {
 
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between"></Stack>
         <Grid container spacing={3}>
-          {status &&
-            posts.map((posts) => (
-              <BlogPost
-                key={posts.id}
-                id={posts.id}
-                title={posts.title}
-                created={posts.created}
-                image={posts.image}
-                nickname={posts.nickname}
-                profile={posts.profile}
-              />
-            ))}
+          {!loading &&
+            posts.map((posts) => {
+              return (
+                <BlogPost
+                  key={posts.id}
+                  id={posts.id}
+                  title={posts.title}
+                  created={posts.created}
+                  image={posts.image}
+                  nickname={posts.nickname}
+                  profile={posts.profile}
+                />
+              );
+            })}
         </Grid>
       </Container>
     </Page>

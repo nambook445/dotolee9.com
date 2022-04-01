@@ -6,11 +6,10 @@ import { useSelector } from 'react-redux';
 import Page from '../components/Page';
 import {
   AppNewUsers,
-  AppBugReports,
   AppItemOrders,
   AppNewsUpdate,
   AppWeeklySales,
-  AppOrderTimeline
+  AppCurrentVisits
 } from '../sections/@dashboard/app';
 
 import axios from 'axios';
@@ -80,7 +79,7 @@ export default function DashboardApp() {
             <AppNewsUpdate topic={[...descTopic]} />
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
-            <AppOrderTimeline />
+            <AppCurrentVisits succession={succession} />
           </Grid>
         </Grid>
       </Container>

@@ -13,7 +13,7 @@ import { formatDistanceToNow, parseISO } from 'date-fns';
 
 function NewsItem(topic) {
   return (
-    <Stack>
+    <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
       <Box sx={{ minWidth: 240 }}>
         <Link to={`/topic/${topic.id}`} color="inherit" underline="hover" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
@@ -21,7 +21,7 @@ function NewsItem(topic) {
           </Typography>
         </Link>
       </Box>
-      <Box>
+      <Box sx={{ justyfyContent: 'flex-end' }}>
         <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
           {formatDistanceToNow(parseISO(topic.created), { addSuffix: true })}
         </Typography>
@@ -48,7 +48,7 @@ export default function AppNewsUpdate(props) {
       <CardHeader title="내가 쓴 글" />
 
       <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
+        <Stack spacing={3} direction="column" sx={{ p: 3, pr: 0 }}>
           {topic.slice(0, topicLength).map((item) => (
             <NewsItem
               key={item.id}

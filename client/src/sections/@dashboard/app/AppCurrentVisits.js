@@ -10,7 +10,7 @@ import { BaseOptionChart } from '../../../components/charts';
 
 // ----------------------------------------------------------------------
 
-const CHART_HEIGHT = 372;
+const CHART_HEIGHT = 340;
 const LEGEND_HEIGHT = 72;
 
 const ChartWrapperStyle = styled('div')(({ theme }) => ({
@@ -31,19 +31,13 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const CHART_DATA = [4344, 5435, 1443, 4443];
-
-export default function AppCurrentVisits() {
+export default function AppCurrentVisits({ succession }) {
   const theme = useTheme();
+  const CHART_DATA = [succession, 100 - succession];
 
   const chartOptions = merge(BaseOptionChart(), {
-    colors: [
-      theme.palette.primary.main,
-      theme.palette.info.main,
-      theme.palette.warning.main,
-      theme.palette.error.main
-    ],
-    labels: ['America', 'Asia', 'Europe', 'Africa'],
+    colors: [theme.palette.info.main, theme.palette.warning.main],
+    labels: ['작성완료', '남은 글'],
     stroke: { colors: [theme.palette.background.paper] },
     legend: { floating: true, horizontalAlign: 'center' },
     dataLabels: { enabled: true, dropShadow: { enabled: false } },
@@ -63,7 +57,6 @@ export default function AppCurrentVisits() {
 
   return (
     <Card>
-      <CardHeader title="Current Visits" />
       <ChartWrapperStyle dir="ltr">
         <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
       </ChartWrapperStyle>
