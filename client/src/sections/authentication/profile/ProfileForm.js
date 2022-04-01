@@ -20,8 +20,11 @@ import { useSelector } from 'react-redux';
 export default function ProfileForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [nickName, setNickName] = useState('');
   // SweetAlert2
   const MySwal = withReactContent(Swal);
+
+  //
   const { user } = useSelector((state) => state.userData);
   // console.log({ id, username, nickname, image });
   const RegisterSchema = Yup.object().shape({
@@ -81,6 +84,8 @@ export default function ProfileForm() {
 
   const { errors, touched, isSubmitting, handleSubmit, getFieldProps } = formik;
 
+  console.log(nickName);
+
   return (
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -91,8 +96,7 @@ export default function ProfileForm() {
             label="ID"
             {...getFieldProps('username')}
             value={user.username}
-            error={Boolean(touched.username && errors.username)}
-            helperText={touched.username && errors.username}
+            disabled
           />
 
           <TextField
@@ -130,6 +134,7 @@ export default function ProfileForm() {
             label="NickName"
             {...getFieldProps('nickname')}
             value={user.nickname}
+            onChange={(e) => setNickName(e.target.value)}
             error={Boolean(touched.nickname && errors.nickname)}
             helperText={touched.nickname && errors.nickname}
           />
