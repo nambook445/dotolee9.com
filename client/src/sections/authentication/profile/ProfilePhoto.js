@@ -1,6 +1,6 @@
 import React from 'react';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import { Box, Stack, IconButton, Typography, Avatar, styled } from '@mui/material';
+import { Card, Stack, IconButton, Avatar, styled } from '@mui/material';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
@@ -22,10 +22,10 @@ export default function ProfilePhoto() {
       .catch((err) => console.log(err.response));
   }
   return (
-    <Stack>
-      <Typography sx={{ color: 'text.secondary' }}>프로필사진</Typography>
-      <Avatar src={profileImage} sx={{ width: 56, height: 56 }}></Avatar>
-      <Box>
+    <Card sx={{ height: '100%' }}>
+      <Stack sx={{ height: '100%' }} justifyContent="space-between">
+        <Avatar src={profileImage} sx={{ width: '100%', height: '80%' }}></Avatar>
+
         <label htmlFor="icon-button-file">
           <Input
             accept="image/*"
@@ -34,11 +34,13 @@ export default function ProfilePhoto() {
             type="file"
             onChange={handleUpload}
           />
-          <IconButton color="primary" aria-label="upload picture" component="span">
-            <PhotoCamera />
-          </IconButton>
+          <Stack>
+            <IconButton color="primary" aria-label="upload picture" component="span" size="large">
+              <PhotoCamera />
+            </IconButton>
+          </Stack>
         </label>
-      </Box>
-    </Stack>
+      </Stack>
+    </Card>
   );
 }

@@ -33,7 +33,6 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 export default function AppCurrentVisits({ succession }) {
   const theme = useTheme();
-  const CHART_DATA = [succession, 100 - succession];
 
   const chartOptions = merge(BaseOptionChart(), {
     colors: [theme.palette.info.main, theme.palette.warning.main],
@@ -44,7 +43,7 @@ export default function AppCurrentVisits({ succession }) {
     tooltip: {
       fillSeriesColor: false,
       y: {
-        formatter: (seriesName) => fNumber(seriesName),
+        formatter: (seriesName) => seriesName,
         title: {
           formatter: (seriesName) => `#${seriesName}`
         }
@@ -58,7 +57,12 @@ export default function AppCurrentVisits({ succession }) {
   return (
     <Card>
       <ChartWrapperStyle dir="ltr">
-        <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
+        <ReactApexChart
+          type="pie"
+          series={[succession, 100 - succession]}
+          options={chartOptions}
+          height={280}
+        />
       </ChartWrapperStyle>
     </Card>
   );

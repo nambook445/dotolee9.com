@@ -23,11 +23,9 @@ const upload = multer({
 });
 
 router.get("/profile", (req, res) => {
-  console.log("hi");
   const sql = `SELECT id, username, nickname, image FROM users WHERE id=?`;
   db.query(sql, [1], (err, results) => {
     const data = results;
-    console.log(results);
     res.json(data);
   });
 });
@@ -124,13 +122,11 @@ router.delete("/topic", (req, res) => {
   });
 });
 router.get("/topic", (req, res) => {
-  console.log(req);
   const sql = `SELECT * FROM topic WHERE user_id = ?`;
   db.query(sql, [req.user], (err, results) => {
     if (err) {
       throw err;
     }
-    console.log(results.length);
     res.send({
       topic: results,
       length: results.length,

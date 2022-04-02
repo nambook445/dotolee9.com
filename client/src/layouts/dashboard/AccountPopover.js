@@ -105,10 +105,7 @@ export default function AccountPopover() {
         {isLogin ? (
           <Avatar src={`http://localhost:8080/images/profile/${user.image}`} alt="photoURL" />
         ) : (
-          <Avatar
-            src={`http://localhost:8080/images/profile/profile_image-1647059124062.png`}
-            alt="photoURL"
-          />
+          <Avatar src="" alt="photoURL" />
         )}
       </IconButton>
 

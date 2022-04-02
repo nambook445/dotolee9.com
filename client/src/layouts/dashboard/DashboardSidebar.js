@@ -81,10 +81,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         ) : (
           <Link underline="none" component={RouterLink} to="#">
             <AccountStyle>
-              <Avatar
-                src={`http://localhost:8080/images/profile/profile_image-1647059124062.png`}
-                alt="photoURL"
-              />
+              <Avatar src="" alt="photoURL" />
               <Box sx={{ ml: 2 }}>
                 <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
                   비회원

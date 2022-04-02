@@ -12,11 +12,15 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
+//
+import { useDispatch } from 'react-redux';
 //----------------------------------------------------------------------
 
 export default function RegisterForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // SweetAlert2
   const MySwal = withReactContent(Swal);
 
@@ -47,7 +51,8 @@ export default function RegisterForm() {
     },
     validationSchema: RegisterSchema,
     onSubmit: async (value) => {
-      const data = {
+      setIsSubmitting(true);
+      let data = {
         username: value.username,
         password: value.password,
         nickname: value.nickname
@@ -56,26 +61,39 @@ export default function RegisterForm() {
         .post('http://localhost:8080/resister', data, {
           withCredentials: true
         })
-        .then((res) => sessionStorage.setItem('user', res.data.user.username))
         .then((res) => {
+          console.log(res.data);
+          dispatch({
+            type: 'USER',
+            user: {
+              id: res.data.id,
+              username: res.data.username,
+              nickname: res.data.nickname,
+              image: res.data.image
+            }
+          });
+          dispatch({
+            type: 'LOGIN',
+            isLogin: true
+          });
           MySwal.fire({
             icon: 'success',
-            title: `환영합니다. ${res.data.user.nickname}`,
+            title: `환영합니다. ${res.data.nickname}`,
             showConfirmButton: false,
             timer: 1500
-          }).then(navigate('/dashboard/app', { replace: true }));
+          }).then(navigate('/app', { replace: true }));
         })
-        .catch((err) =>
+        .catch((err) => {
+          setIsSubmitting(false);
           MySwal.fire({
             icon: 'error',
-            title: JSON.stringify(err.response.data),
-            footer: '<a href="/resister">회원가입</a>'
-          })
-        );
+            title: err.response.data
+          });
+        });
     }
   });
 
-  const { errors, touched, isSubmitting, handleSubmit, getFieldProps } = formik;
+  const { errors, touched, handleSubmit, getFieldProps } = formik;
 
   return (
     <FormikProvider value={formik}>
