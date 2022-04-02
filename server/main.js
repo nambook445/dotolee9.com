@@ -230,7 +230,6 @@ app.post("/delete", (req, res) => {
 });
 
 app.post("/login", async function (req, res, next) {
-  console.log(req.body);
   await passport.authenticate("local", function (err, user, info) {
     if (err) return next(err);
     if (!user) return res.status(404).json(info);
@@ -269,47 +268,14 @@ app.post("/resister", (req, res) => {
   });
 });
 
-app.put("/profile", (req, res) => {
-  console.log(req.body);
-  const sql = `SELECT * FROM users WHERE username=?`;
-  db.query(sql, [req.body.username], (err, results) => {
-    if (err) return err;
-    if (results) {
-      bcrypt.compare(req.body.password, results[0].password, (err, results) => {
-        if (results) {
-          bcrypt.genSalt(saltRounds, (err, salt) => {
-            bcrypt.hash(req.body.newPassword, salt, (err, hash) => {
-              const sql = `UPDATE users SET password=?,nickname=? WHERE username=?`;
-              db.query(
-                sql,
-                [hash, req.body.nickname, req.body.username],
-                (err, results) => {
-                  if (err) return err;
-                  const sql = `SELECT * FROM users WHERE username=?`;
-                  db.query(sql, [req.body.username], (err, results) => {
-                    if (err) return err;
-                    const user = results[0];
-                    res.send(user);
-                  });
-                }
-              );
-            });
-          });
-        } else {
-          return res.status(404).send("비밀번호가 틀렸습니다.");
-        }
-      });
-    }
-  });
-});
-
 app.post("/profile", upload.single("profile_image"), function (req, res) {
+  console.log(req.file);
   const profile_image = req.file.filename;
   const update_sql = `UPDATE users SET image=? WHERE id=?`;
   db.query(update_sql, [profile_image, req.user], function (err, results) {
     if (err) throw err;
   });
-  res.json({
+  res.send({
     fileName: req.file.filename,
   });
 });

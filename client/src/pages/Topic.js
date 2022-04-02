@@ -69,6 +69,8 @@ const formats = [
 
 // ----------------------------------------------------------------------
 
+// 삭제시 서버에 이미지파일이 있다면 같이 삭제 ㄱㄱ
+
 export default function TopicPage() {
   const [status, setStatus] = useState(false);
   const [id, setId] = useState('');

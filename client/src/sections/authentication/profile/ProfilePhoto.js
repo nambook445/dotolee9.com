@@ -2,7 +2,7 @@ import React from 'react';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Card, Stack, IconButton, Avatar, styled } from '@mui/material';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Input = styled('input')({
   display: 'none'
@@ -12,13 +12,25 @@ const Input = styled('input')({
 
 export default function ProfilePhoto() {
   const { user } = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
   const profileImage = `http://localhost:8080/images/profile/${user.image}`;
   async function handleUpload(e) {
     const formData = new FormData();
     formData.append('profile_image', e.target.files[0]);
     await axios
       .post('http://localhost:8080/profile', formData, { withCredentials: true })
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: 'USER',
+          user: {
+            id: user.id,
+            username: user.username,
+            nickname: user.nickname,
+            image: res.data.fileName
+          }
+        });
+      })
       .catch((err) => console.log(err.response));
   }
   return (

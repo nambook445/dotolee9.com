@@ -57,7 +57,7 @@ export default function ProfileForm() {
     },
     validationSchema: RegisterSchema,
     onSubmit: async (value) => {
-      const data = {
+      let data = {
         username: value.username,
         password: value.password,
         newPassword: value.newPassword,
@@ -66,7 +66,7 @@ export default function ProfileForm() {
       console.log(data);
       setIsSubmitting(true);
       await axios
-        .put('http://localhost:8080/profile', data, {
+        .put('http://localhost:8080/api/profile', data, {
           withCredentials: true
         })
         .then((res) => {
