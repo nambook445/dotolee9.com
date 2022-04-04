@@ -101,28 +101,20 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
       <Box sx={{ flexGrow: 1 }} />
 
-      <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
+      <Box sx={{ px: 2.5, pb: 3 }}>
         <Stack
           alignItems="center"
           spacing={3}
-          sx={{ pt: 5, borderRadius: 2, position: 'relative' }}
+          sx={{ pt: 2, borderRadius: 2, position: 'relative' }}
         >
-          <Box
-            component="img"
-            src="/static/illustrations/illustration_avatar.png"
-            sx={{ width: 100, position: 'absolute', top: -50 }}
-          />
+          <Typography gutterBottom variant="h6">
+            Dotolee
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            구직중
+          </Typography>
 
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography gutterBottom variant="h6">
-              Dotolee
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              구직중
-            </Typography>
-          </Box>
-
-          <Button href="http://localhost:8080/" target="_blank" variant="contained">
+          <Button href="http://localhost:3000/portfolio" target="_blank" variant="contained">
             Go To Portfolio
           </Button>
         </Stack>
