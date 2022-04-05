@@ -1,16 +1,17 @@
 import { useRef, useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+// redux
+import { useSelector, useDispatch } from 'react-redux';
 // material
 import { alpha } from '@mui/material/styles';
 import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '@mui/material';
 // components
 import Iconify from '../../components/Iconify';
 import MenuPopover from '../../components/MenuPopover';
-// axios
+//axios
 import axios from 'axios';
-
-import { useSelector, useDispatch } from 'react-redux';
-// ----------------------------------------------------------------------
+// utils
+import { SERVER, CLIENT } from '../../utils/domain';
 
 export default function AccountPopover() {
   const navigate = useNavigate();
@@ -54,7 +55,9 @@ export default function AccountPopover() {
   function LogoutButton() {
     async function handleLogout() {
       await axios
-        .get('http://localhost:8080/logout', { withCredentials: true })
+        .get(`${SERVER}/user/logout`, {
+          withCredentials: true
+        })
         .then(
           dispatch({
             type: 'LOGIN',
@@ -103,7 +106,7 @@ export default function AccountPopover() {
         }}
       >
         {isLogin ? (
-          <Avatar src={`http://localhost:8080/images/profile/${user.image}`} alt="photoURL" />
+          <Avatar src={`${SERVER}/images/profile/${user.image}`} alt="photoURL" />
         ) : (
           <Avatar src="" alt="photoURL" />
         )}

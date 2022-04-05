@@ -26,7 +26,8 @@ import { styled } from '@mui/material/styles';
 import axios from 'axios';
 // css
 import './Paper.css';
-
+// utils
+import { SERVER } from '../utils/domain';
 // ----------------------------------------------------------------------
 // //
 
@@ -105,7 +106,7 @@ export default function PaperPage() {
     }
 
     await axios
-      .post('http://localhost:8080/api/paper', data, {
+      .post(`${SERVER}/api/paper`, data, {
         withCredentials: true
       })
       .then((res) => {
@@ -116,12 +117,11 @@ export default function PaperPage() {
           timer: 1500
         }).then(navigate('/blog'));
       })
-      .catch(
-        (err) => console.log(err.response)
-        // MySwal.fire({
-        //   icon: 'error',
-        //   title: JSON.stringify(err.response)
-        // })
+      .catch((err) =>
+        MySwal.fire({
+          icon: 'error',
+          title: JSON.stringify(err.response)
+        })
       );
   };
   // Enter키로 submit되는 상황방지

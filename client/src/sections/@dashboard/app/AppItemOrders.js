@@ -2,8 +2,6 @@
 import { styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
 
-// ----------------------------------------------------------------------
-
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
   textAlign: 'center',
@@ -11,8 +9,6 @@ const RootStyle = styled(Card)(({ theme }) => ({
   color: theme.palette.warning.darker,
   backgroundColor: theme.palette.warning.lighter
 }));
-
-// ----------------------------------------------------------------------
 
 export default function AppItemOrders({ topicLength }) {
   const text = () => {

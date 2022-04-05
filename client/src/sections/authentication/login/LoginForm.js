@@ -23,6 +23,8 @@ import Iconify from '../../../components/Iconify';
 // ----------------------------------------------------------------------
 import { useDispatch } from 'react-redux';
 
+import { SERVER } from '../../../utils/domain';
+
 export default function LoginForm() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +44,7 @@ export default function LoginForm() {
         password: value.password
       };
       await axios
-        .post('http://localhost:8080/login', data, {
+        .post(`${SERVER}/user/login`, data, {
           withCredentials: true
         })
         .then((res) => {
@@ -71,8 +73,7 @@ export default function LoginForm() {
         .catch((err) =>
           MySwal.fire({
             icon: 'error',
-            title: JSON.stringify(err.response.data.message),
-            footer: '<a href="/resister">회원가입</a>'
+            title: JSON.stringify(err.response.data.message)
           })
         );
     }

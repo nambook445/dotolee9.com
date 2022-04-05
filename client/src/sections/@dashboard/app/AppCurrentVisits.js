@@ -2,13 +2,9 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { useTheme, styled } from '@mui/material/styles';
-import { Card, CardHeader } from '@mui/material';
-// utils
-import { fNumber } from '../../../utils/formatNumber';
-//
+import { Card } from '@mui/material';
+// conponents
 import { BaseOptionChart } from '../../../components/charts';
-
-// ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 340;
 const LEGEND_HEIGHT = 72;
@@ -28,8 +24,6 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
     top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
   }
 }));
-
-// ----------------------------------------------------------------------
 
 export default function AppCurrentVisits({ succession }) {
   const theme = useTheme();

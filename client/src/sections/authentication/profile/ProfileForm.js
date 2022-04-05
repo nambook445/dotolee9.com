@@ -7,15 +7,14 @@ import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // axios
 import axios from 'axios';
+// utils
+import { SERVER } from '../../../utils/domain';
 // SweetAlert2
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
 import { useDispatch, useSelector } from 'react-redux';
-//----------------------------------------------------------------------
-// import { connect } from 'react-redux';
-//
 
 export default function ProfileForm() {
   const dispatch = useDispatch();
@@ -23,11 +22,8 @@ export default function ProfileForm() {
   const { user } = useSelector((state) => state.userData);
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   // SweetAlert2
   const MySwal = withReactContent(Swal);
-
-  //
 
   const RegisterSchema = Yup.object().shape({
     username: Yup.string()
@@ -66,7 +62,7 @@ export default function ProfileForm() {
       console.log(data);
       setIsSubmitting(true);
       await axios
-        .put('http://localhost:8080/api/profile', data, {
+        .put(`${SERVER}/user/profile`, data, {
           withCredentials: true
         })
         .then((res) => {

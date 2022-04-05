@@ -3,11 +3,10 @@ import { Link as RouterLink } from 'react-router-dom';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@mui/material';
-
-//
+// components
 import SvgIconStyle from '../../../components/SvgIconStyle';
-
-// ----------------------------------------------------------------------
+//utils
+import { SERVER } from '../../../utils/domain';
 
 const CardMediaStyle = styled('div')({
   position: 'relative',
@@ -53,16 +52,9 @@ export default function BlogPost(post, index) {
 
   function CoverImg(image) {
     if (image.image !== null) {
-      return (
-        <CoverImgStyle alt={image.image} src={`http://localhost:8080/images/post/${image.image}`} />
-      );
+      return <CoverImgStyle alt={image.image} src={`${SERVER}/images/post/${image.image}`} />;
     } else {
-      return (
-        <CoverImgStyle
-          alt={image.image}
-          src={`http://localhost:8080/assets/images/basic-post.jpg`}
-        />
-      );
+      return <CoverImgStyle alt={image.image} src={`${SERVER}/assets/images/basic-post.jpg`} />;
     }
   }
   return (
@@ -103,7 +95,7 @@ export default function BlogPost(post, index) {
           />
           <AvatarStyle
             alt={post.nickname}
-            src={`http://localhost:8080/images/profile/${post.profile}`}
+            src={`${SERVER}/images/profile/${post.profile}`}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,

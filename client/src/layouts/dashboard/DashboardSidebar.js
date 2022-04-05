@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+// redux
+import { useSelector } from 'react-redux';
 // material
 import { styled } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
@@ -10,9 +12,10 @@ import useResponsive from '../../hooks/useResponsive';
 import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
+// utils
+import { SERVER, CLIENT } from '../../utils/domain';
 //
 import { loginedConfig, unLoginedConfig } from './SidebarConfig';
-import { useSelector } from 'react-redux';
 
 // ----------------------------------------------------------------------
 
@@ -67,7 +70,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         {isLogin ? (
           <Link underline="none" component={RouterLink} to="#">
             <AccountStyle>
-              <Avatar src={`http://localhost:8080/images/profile/${user.image}`} alt="photoURL" />
+              <Avatar src={`${SERVER}/images/profile/${user.image}`} alt="photoURL" />
               <Box sx={{ ml: 2 }}>
                 <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
                   {user.username}
@@ -114,7 +117,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             구직중
           </Typography>
 
-          <Button href="http://localhost:3000/portfolio" target="_blank" variant="contained">
+          <Button href={`${CLIENT}/portfolio`} target="_blank" variant="contained">
             Go To Portfolio
           </Button>
         </Stack>

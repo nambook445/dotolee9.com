@@ -6,9 +6,10 @@ import { Grid, Button, Container, Stack, Typography } from '@mui/material';
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
 import { BlogPost } from '../sections/@dashboard/blog';
-
+// axios
 import axios from 'axios';
-
+// utils
+import {SERVER} from '../utils/domain'
 // ----------------------------------------------------------------------
 
 export default function Blog() {
@@ -18,7 +19,7 @@ export default function Blog() {
   useEffect(() => {
     setLoading(false);
     axios
-      .get('http://localhost:8080/api')
+      .get(`${SERVER}/api/blog`)
       .then((res) => {
         setPosts(res.data);
         setLoading(false);

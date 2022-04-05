@@ -11,9 +11,9 @@ import {
   AppWeeklySales,
   AppCurrentVisits
 } from '../sections/@dashboard/app';
-
+// utils
 import axios from 'axios';
-
+import { SERVER } from '../utils/domain';
 import { differenceInDays, parseISO } from 'date-fns';
 
 // ----------------------------------------------------------------------
@@ -24,10 +24,12 @@ export default function DashboardApp() {
   const [topic, setTopic] = useState([]);
   const [topicLength, setTopicLength] = useState(0);
   const [succession, setSuccession] = useState(0);
+
+  console.log(topic);
   useEffect(() => {
     const callTopicState = async () => {
       await axios
-        .get('http://localhost:8080/api/topic', {
+        .get(`${SERVER}/api/topic`, {
           params: { id: user.id },
           withCredentials: true
         })
@@ -48,7 +50,7 @@ export default function DashboardApp() {
         .catch((err) => err.response);
     };
     callTopicState();
-  }, [user]); // eslint-disable-line
+  }, [user, isLogin]); // eslint-disable-line
 
   let descTopic = [...topic].sort(function (a, b) {
     return b.id - a.id;

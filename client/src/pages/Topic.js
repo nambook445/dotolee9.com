@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+// redux
+import { useSelector } from 'react-redux';
 // material
 import {
   Typography,
@@ -14,7 +16,7 @@ import {
   Container,
   Switch
 } from '@mui/material';
-
+import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 // SweetAlert2
@@ -23,19 +25,16 @@ import withReactContent from 'sweetalert2-react-content';
 // components
 import Page from '../components/Page';
 import Iconify from '../components/Iconify';
+// quill editor
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-import { styled } from '@mui/material/styles';
 // axios
 import axios from 'axios';
+// utils
+import { SERVER, CLIENT } from '../utils/domain';
 // css
 import './Paper.css';
-// redux
-import { useSelector } from 'react-redux';
-
-// ----------------------------------------------------------------------
-// //
 
 const modules = {
   toolbar: [
@@ -65,10 +64,6 @@ const formats = [
   'background'
 ];
 
-// ----------------------------------------------------------------------
-
-// ----------------------------------------------------------------------
-
 // 삭제시 서버에 이미지파일이 있다면 같이 삭제 ㄱㄱ
 
 export default function TopicPage() {
@@ -93,7 +88,7 @@ export default function TopicPage() {
   useEffect(() => {
     async function fetchData() {
       await axios
-        .post('http://localhost:8080/api/topic', params, {
+        .post(`${SERVER}/api/topic`, params, {
           withCredentials: true
         })
         .then((res) => {
@@ -144,7 +139,7 @@ export default function TopicPage() {
     data.set('imageFileNameFromServer', imageFileNameFromServer);
 
     await axios
-      .put('http://localhost:8080/api/topic', data, {
+      .put(`${SERVER}/api/topic`, data, {
         withCredentials: true
       })
       .then((res) => {
@@ -174,7 +169,7 @@ export default function TopicPage() {
           src={
             props.status && props.imageUpdate
               ? props.imgBase64
-              : `http://localhost:8080/images/post/${imageFileNameFromServer}`
+              : `${SERVER}/images/post/${imageFileNameFromServer}`
           }
         />
       );
@@ -204,7 +199,7 @@ export default function TopicPage() {
         if (result.isConfirmed) {
           const topicDelete = async () => {
             await axios
-              .delete('http://localhost:8080/api/topic', {
+              .delete(`${SERVER}/api/topic`, {
                 withCredentials: true,
                 data: {
                   id: id
@@ -216,7 +211,7 @@ export default function TopicPage() {
                   title: '삭제완료',
                   showConfirmButton: false,
                   timer: 1500
-                })((document.location = 'http://localhost:3000/blog'));
+                })((document.location = `${CLIENT}/blog`));
               })
               .catch((err) => console.log(err.response));
           };

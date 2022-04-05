@@ -10,8 +10,6 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 import SvgIconStyle from '../../../components/SvgIconStyle';
 import Iconify from '../../../components/Iconify';
 
-// ----------------------------------------------------------------------
-
 const CardMediaStyle = styled('div')({
   position: 'relative',
   paddingTop: 'calc(100% * 3 / 4)'
@@ -49,8 +47,6 @@ const CoverImgStyle = styled('img')({
   objectFit: 'cover',
   position: 'absolute'
 });
-
-// ----------------------------------------------------------------------
 
 BlogPostCard.propTypes = {
   post: PropTypes.object.isRequired,

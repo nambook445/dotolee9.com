@@ -1,19 +1,23 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { useFormik, Form, FormikProvider } from 'formik';
 import { useNavigate } from 'react-router-dom';
+// redux
+import { useDispatch } from 'react-redux';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // axios
 import axios from 'axios';
+// utils
+import { SERVER } from '../../../utils/domain';
+// formik
+import { useFormik, Form, FormikProvider } from 'formik';
 // SweetAlert2
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
-//
-import { useDispatch } from 'react-redux';
+
 //----------------------------------------------------------------------
 
 export default function RegisterForm() {
@@ -58,7 +62,7 @@ export default function RegisterForm() {
         nickname: value.nickname
       };
       await axios
-        .post('http://localhost:8080/resister', data, {
+        .post(`${SERVER}/user/resister`, data, {
           withCredentials: true
         })
         .then((res) => {

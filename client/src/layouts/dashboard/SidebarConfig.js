@@ -30,25 +30,6 @@ const unLoginedConfig = [
     path: '/register',
     icon: getIcon('eva:person-add-fill')
   },
-  // 404 페이지
-  // ,
-  // {
-  //   title: 'Not found',
-  //   path: '/404',
-  //   icon: getIcon('eva:alert-triangle-fill')
-  // },
-  // 프로덕트 페이지 책추천 api있으면 시도해볼듯
-  // {
-  //   title: 'product',
-  //   path: '/dashboard/products',
-  //   icon: getIcon('eva:shopping-bag-fill')
-  // },
-  // 회원정보 관리 페이지로 사용해보자
-  // {
-  //   title: 'user',
-  //   path: '/dashboard/user',
-  //   icon: getIcon('eva:people-fill')
-  // },
 ];
 
 const loginedConfig = [

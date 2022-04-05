@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader } from '@mui/material';
-//
+// components
 import Scrollbar from '../../../components/Scrollbar';
 import Iconify from '../../../components/Iconify';
-
 // date-fns
 import { formatDistanceToNow, parseISO } from 'date-fns';
-
-// ----------------------------------------------------------------------
 
 function NewsItem(topic) {
   return (

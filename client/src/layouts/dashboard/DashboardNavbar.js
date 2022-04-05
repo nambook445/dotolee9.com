@@ -8,10 +8,6 @@ import Iconify from '../../components/Iconify';
 import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 
-// import NotificationsPopover from './NotificationsPopover'; <NotificationsPopover /> 알림설정 sns에 필요할듯
-// import LanguagePopover from './LanguagePopover'; <LanguagePopover /> 언어설정을 위한 UI
-// ----------------------------------------------------------------------
-
 const DRAWER_WIDTH = 280;
 const APPBAR_MOBILE = 64;
 const APPBAR_DESKTOP = 92;
@@ -33,8 +29,6 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     padding: theme.spacing(0, 5)
   }
 }));
-
-// ----------------------------------------------------------------------
 
 DashboardNavbar.propTypes = {
   onOpenSidebar: PropTypes.func

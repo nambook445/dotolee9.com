@@ -1,24 +1,25 @@
 import React from 'react';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+// mui
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Card, Stack, IconButton, Avatar, styled } from '@mui/material';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-
+// utils
+import { SERVER } from '../../../utils/domain';
 const Input = styled('input')({
   display: 'none'
 });
 
-//mysql에 프로필사진 경로 등록하고 스테이트로 관리하기
-
 export default function ProfilePhoto() {
   const { user } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
-  const profileImage = `http://localhost:8080/images/profile/${user.image}`;
+  const profileImage = `${SERVER}/images/profile/${user.image}`;
   async function handleUpload(e) {
     const formData = new FormData();
     formData.append('profile_image', e.target.files[0]);
     await axios
-      .post('http://localhost:8080/profile', formData, { withCredentials: true })
+      .post(`${SERVER}/user/profile`, formData, { withCredentials: true })
       .then((res) => {
         console.log(res);
         dispatch({

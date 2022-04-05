@@ -5,16 +5,12 @@ import { Stack, Link, Container, Typography } from '@mui/material';
 // components
 import Page from '../components/Page';
 import { LoginForm } from '../sections/authentication/login';
-// import AuthSocial from '../sections/authentication/AuthSocial'; <AuthSocial /> Oauth를사용한다면
-// ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     display: 'flex'
   }
 }));
-
-// ----------------------------------------------------------------------
 
 export default function Login() {
   return (

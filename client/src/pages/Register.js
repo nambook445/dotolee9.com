@@ -6,17 +6,12 @@ import { Link, Container, Typography, Stack } from '@mui/material';
 import Page from '../components/Page';
 import { RegisterForm } from '../sections/authentication/register';
 
-// import AuthSocial from '../sections/authentication/AuthSocial'; <AuthSocial /> Oauth용
-
-// ----------------------------------------------------------------------
 const RootStyle = styled(Page)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     display: 'flex',
     pb: 0
   }
 }));
-
-// ----------------------------------------------------------------------
 
 export default function Register() {
   return (
