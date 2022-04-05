@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+const path = require("path");
 const db = require("./model/db");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -26,7 +27,9 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 app.locals.pretty = true;
 app.use(flash());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "/public")));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -76,6 +79,10 @@ passport.use(
 
 app.use("/api", api, (req, res) => {});
 app.use("/user", user, (req, res) => {});
+
+app.get("*", function (요청, 응답) {
+  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
 
 app.use((req, res, next) => {
   res.status(404).send("Sorry cant find that!");
