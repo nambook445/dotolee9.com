@@ -229,7 +229,7 @@ export default function TopicPage() {
     }
   };
   return (
-    <Page title="Dashboard: Paper | Minimal-UI">
+    <Page title="Topic | DOTOLEE">
       <Container userId={userId}>
         {user.id === Number(userId) ? (
           <Switch checked={checked} onChange={() => setChecked(!checked)} />

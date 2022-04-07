@@ -12,7 +12,7 @@ const RootStyle = styled(Page)(({ theme }) => ({
 }));
 export default function Profile() {
   return (
-    <RootStyle title="Register | Minimal-UI">
+    <RootStyle title="Profile | DOTOLEE">
       <Container>
         <Box sx={{ mb: 5 }}>
           <Typography variant="h4" gutterBottom>
