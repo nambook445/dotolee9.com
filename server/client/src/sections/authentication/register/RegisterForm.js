@@ -30,7 +30,7 @@ export default function RegisterForm() {
 
   const RegisterSchema = Yup.object().shape({
     username: Yup.string()
-      .min(6, 'ID는 6자리 이상이어야 합니다.')
+      .min(5, 'ID는 5자리 이상이어야 합니다.')
       .max(20, '외우기 힘들텐데요!')
       .required('ID를 입력하세요.'),
     password: Yup.string()

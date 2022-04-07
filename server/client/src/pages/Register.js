@@ -15,7 +15,7 @@ const RootStyle = styled(Page)(({ theme }) => ({
 
 export default function Register() {
   return (
-    <RootStyle title="Register | Minimal-UI">
+    <RootStyle title="Register | DOTOLEE">
       <Container maxWidth="sm">
         <Stack sx={{ my: 1 }}>
           <Typography variant="h4" gutterBottom>

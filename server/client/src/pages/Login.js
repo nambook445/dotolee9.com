@@ -14,7 +14,7 @@ const RootStyle = styled(Page)(({ theme }) => ({
 
 export default function Login() {
   return (
-    <RootStyle title="Login | Minimal-UI">
+    <RootStyle title="Login | DOTOLEE">
       <Container maxWidth="sm">
         <Stack sx={{ my: 1 }}>
           <Typography variant="h4" gutterBottom>

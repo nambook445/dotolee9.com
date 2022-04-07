@@ -132,7 +132,7 @@ export default function PaperPage() {
   };
 
   return (
-    <Page title="Dashboard: Paper | Minimal-UI">
+    <Page title="Paper | DOTOLEE">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
           <Typography variant="h4" gutterBottom>
