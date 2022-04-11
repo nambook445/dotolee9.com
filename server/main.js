@@ -19,7 +19,7 @@ const user = require("./Router/user");
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://3.38.59.97",
+    origin: "http://dotolee9.com",
     credentials: true,
   })
 );
