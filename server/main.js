@@ -19,7 +19,11 @@ const user = require("./Router/user");
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://dotolee9.com", "http://www.dotolee9.com"],
+    origin: [
+      "http://dotolee9.com",
+      "http://www.dotolee9.com",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );

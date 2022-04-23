@@ -13,7 +13,7 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 // utils
-import { SERVER } from '../../utils/domain';
+import { SERVER, CLIENT } from '../../utils/domain';
 //
 import { loginedConfig, unLoginedConfig } from './SidebarConfig';
 
@@ -117,7 +117,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             구직중
           </Typography>
 
-          <Button href={`${SERVER}/portfolio`} target="_blank" variant="contained">
+          <Button href={`${CLIENT}/portfolio`} target="_blank" variant="contained">
             Go To Portfolio
           </Button>
         </Stack>

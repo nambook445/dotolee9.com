@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import NotFound from './pages/Page404';
 import Paper from './pages/Paper';
 import Topic from './pages/Topic';
+import Portfolio from './pages/Portfolio';
 
 // ----------------------------------------------------------------------
 
@@ -39,6 +40,7 @@ export default function Router() {
         { path: '*', element: <Navigate to="/404" /> }
       ]
     },
+    { path: 'portfolio', element: <Portfolio /> },
     { path: '*', element: <Navigate to="/404" replace /> }
   ]);
 }

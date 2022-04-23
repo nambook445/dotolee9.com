@@ -72,6 +72,7 @@
     "redux-persist": "^6.0.0",
     "simplebar": "^5.3.6",
     "simplebar-react": "^2.3.6",
+    "styled-components": "^5.3.5",
     "sweetalert2": "^11.4.4",
     "sweetalert2-react-content": "^4.2.0",
     "universal-cookie": "^4.0.4",
