@@ -3,11 +3,28 @@ import styled from 'styled-components';
 
 export default function Portfolio() {
   const [isScroll, setIsScroll] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
   useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 0 ? setIsScroll(true) : setIsScroll(false);
     });
   }, [isScroll]);
+  const ProjectNav = [
+    { title: 'ALL' },
+    { title: 'PHOTOGRAPHY' },
+    { title: 'LOGO' },
+    { title: 'GRAPHICS' },
+    { title: 'ADVERTISING' },
+    { title: 'FASHION' }
+  ];
+  const ProjectList = [
+    { title: '01', category: 'ALL' },
+    { title: '02', category: 'PHOTOGRAPHY' },
+    { title: '03', category: 'LOGO' },
+    { title: '04', category: 'GRAPHICS' },
+    { title: '05', category: 'ADVERTISING' },
+    { title: '06', category: 'FASHION' }
+  ];
 
   return (
     <Fragment>
@@ -127,6 +144,7 @@ export default function Portfolio() {
           </div>
         </Container>
       </Experience>
+      {/* Experience */}
       <Project>
         <Container>
           <div>
@@ -141,43 +159,57 @@ export default function Portfolio() {
             <div>
               <nav>
                 <ul>
-                  <li>
-                    <a>all</a>
-                  </li>
-                  <li>
-                    <a>all</a>
-                  </li>
-                  <li>
-                    <a>all</a>
-                  </li>
-                  <li>
-                    <a>all</a>
-                  </li>
-                  <li>
-                    <a>all</a>
-                  </li>
-                  <li>
-                    <a>all</a>
-                  </li>
+                  {ProjectNav.map((item, index) => {
+                    const active = index === activeItem ? 'active' : null;
+                    return (
+                      <li className={`${active}-li`}>
+                        <a
+                          key={index}
+                          className={active}
+                          onClick={() => {
+                            setActiveItem(index);
+                          }}
+                          href="#"
+                        >
+                          {item.title}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </nav>
             </div>
           </div>
-          <div>
-            <a>
-              <div>
-                <div>
-                  <div>
-                    <span>
-                      Photorealistic smartwatch<em>Photography</em>
-                    </span>
+          <div className="item-container">
+            {ProjectList.map((item, index) => {
+              return (
+                <a key={index} href="#">
+                  <img src="static/01.jpg" alt="project" />
+                  <div clasName="item-hover">
+                    <div className="item-info">
+                      <div id="project-name">
+                        <p>{item.title}</p>
+                      </div>
+                      <div id="project-category">
+                        <p>{item.category}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </a>
+                </a>
+              );
+            })}
           </div>
         </Container>
       </Project>
+      {/* Project */}
+      <Contact>
+        <Container>
+          <div>
+            <h4>04</h4>
+            <h1>Contact Me</h1>
+          </div>
+        </Container>
+      </Contact>
     </Fragment>
   );
 }
@@ -240,7 +272,7 @@ const Landing = styled.div`
   justify-content: start;
   align-items: center;
   margin: 0;
-  padding: 0 5%;
+  padding: 0 10%;
   width: 100%;
   height: 100vh;
   .text h1 {
@@ -267,7 +299,7 @@ const Landing = styled.div`
       position: absolute;
       width: 30px;
       height: 2px;
-      top: 9px;
+      top: 14px;
       left: -40px;
       content: '';
     }
@@ -306,7 +338,8 @@ const About = styled.section`
 `;
 const Container = styled.div`
   display: grid;
-  margin: 0 10%;
+  margin: 0 5%;
+  padding: 0 20px;
   h1 {
     display: inline-block;
     margin: 10px 0;
@@ -331,7 +364,7 @@ const Container = styled.div`
       position: absolute;
       width: 30px;
       height: 2px;
-      top: 9px;
+      top: 13px;
       left: -40px;
       content: '';
     }
@@ -369,7 +402,7 @@ const Experience = styled.section`
     li {
       display: block;
       position: relative;
-      padding-left: 2rem;
+      padding-left: 3em;
     }
 
     .timeline-thumbnail {
@@ -379,6 +412,7 @@ const Experience = styled.section`
       display: inline-block;
       font-size: 12px;
       font-weight: bold;
+      margin-top: 0.5em;
       margin-bottom: 1.2em;
       padding: 0.25em 1em 0.2em 1em;
       box-shadow: inset 0 0 0 0em #425bb5;
@@ -389,12 +423,12 @@ const Experience = styled.section`
       background: #425bb5;
       display: inline-block;
       outline: 10px solid #f3f3f3;
-      margin: 0.5em 0.5em 0.5em -0.5em;
+      margin: 0.5em 0.5em 0.5em 0.5em;
       width: 1em;
       height: 1em;
       position: absolute;
       top: 0;
-      left: 0;
+      left: 1px;
     }
   }
   .timeline {
@@ -402,6 +436,7 @@ const Experience = styled.section`
     ::before {
       background: #444;
       top: 0;
+      margin-left: 1em;
       position: absolute;
       width: 2px;
       height: 100%;
@@ -411,4 +446,131 @@ const Experience = styled.section`
 `;
 const Project = styled.section`
   padding: 20vh 0;
+  nav {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  ul {
+    padding: 10px 0;
+    line-height: 1.5em;
+  }
+  ul li:first-child {
+    padding-left: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .active-li {
+    margin-right: 20px;
+  }
+  li a {
+    display: inline-block;
+    color: #60606e;
+    font-size: 12px;
+    transition: all 0.2s ease-in-out 0.2s;
+    font-weight: bold;
+    height: 2em;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    &.active {
+      background: #425bb5;
+      padding: 0 20px;
+      color: #f3f3f3;
+    }
+    &:not(.active):hover {
+      color: #425bb5;
+    }
+  }
+  .item-container {
+    display: grid;
+    gap: 2rem;
+    padding: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .item-container a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      .item-info,
+      .item-info #project-name,
+      .item-info #project-category {
+        opacity: 1;
+      }
+      .item-info #project-name,
+      .item-info #project-category {
+        transform: translateY(0%);
+      }
+    }
+  }
+  .item-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: translateY(100%);
+  }
+  .item-info {
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: all 1s ease-in-out;
+    background: #425bb5;
+    color: #333;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    opacity: 0;
+  }
+  .item-info #project-name {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    background: #425bb5;
+    border-bottom: 1px solid #425bb5;
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out 0.3s;
+    opacity: 0;
+    p {
+      display: inline-block;
+      margin-bottom: 10%;
+    }
+  }
+  .item-info #project-category {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    font-style: normal;
+    background: #425bb5;
+    border-top: none;
+    transform: translateY(100%);
+    transition: all 0.35s ease-in-out 0.35s;
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0;
+    p {
+      display: inline-block;
+      margin-top: 10%;
+    }
+  }
+`;
+const Contact = styled.section`
+  padding: 20vh 0;
+  background: #f3f3f3;
 `;
