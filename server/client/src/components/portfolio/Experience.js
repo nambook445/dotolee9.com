@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from './components/Container';
+import { useScrollClipPath } from './hook';
 
 const Experience = () => {
+  const animatedItem = {
+    0: useScrollClipPath('down', 0.5, 0),
+    1: useScrollClipPath('down', 0.5, 0),
+    2: useScrollClipPath('down', 0.5, 0)
+  };
   return (
     <MyExperience id="experience">
       <Container className="experience">
@@ -18,7 +24,7 @@ const Experience = () => {
           <ul className="timeline">
             <li className="timeline-li">
               <label></label>
-              <div>
+              <div {...animatedItem[0]}>
                 <p className="timeline-thumbnail">April 2016 - Present</p>
                 <h3>Geil,Danke! GmbH</h3>
                 <h4>eines Web-Studios</h4>
@@ -32,7 +38,7 @@ const Experience = () => {
             </li>
             <li className="timeline-li">
               <label></label>
-              <div>
+              <div {...animatedItem[1]}>
                 <p className="timeline-thumbnail">April 2016 - Present</p>
                 <h3>Geil,Danke! GmbH</h3>
                 <h4>eines Web-Studios</h4>
@@ -46,7 +52,7 @@ const Experience = () => {
             </li>
             <li className="timeline-li">
               <label></label>
-              <div>
+              <div {...animatedItem[2]}>
                 <p className="timeline-thumbnail">April 2016 - Present</p>
                 <h3>Geil,Danke! GmbH</h3>
                 <h4>eines Web-Studios</h4>

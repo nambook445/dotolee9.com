@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from './components/Container';
+import { useScrollClipPath } from './hook';
 
 const About = () => {
+  const animatedItem = {
+    0: useScrollClipPath('left', 0.5, 0),
+    1: useScrollClipPath('right', 0.5, 0)
+  };
   return (
     <MyAbout id="about">
       <Container className="about">
-        <div>
+        <div {...animatedItem[1]}>
           <h4>01</h4>
           <h1>
             know
@@ -24,7 +29,7 @@ const About = () => {
         </div>
         <div>
           <div className="about-border">
-            <img src="static/about-img.jpg" alt="" width="230" />
+            <img {...animatedItem[0]} src="static/about-img.jpg" alt="" width="230" />
           </div>
         </div>
       </Container>
@@ -34,7 +39,6 @@ const About = () => {
 
 const MyAbout = styled.section`
   padding: 20vh 0;
-  scroll-behavior: smooth;
   .about {
     grid-template-columns: repeat(2, 1fr);
     gap: 10%;

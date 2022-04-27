@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useScrollFadeIn } from './hook/';
 
 const Header = () => {
   const [isScroll, setIsScroll] = useState(false);
+  const animatedItem = {
+    0: useScrollFadeIn('up', 1, 0.2)
+  };
   useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 0 ? setIsScroll(true) : setIsScroll(false);
     });
   }, [isScroll]);
   return (
-    <MyHeader isScroll={isScroll}>
+    <MyHeader {...animatedItem[0]} isScroll={isScroll}>
       <Nav>
         <ul>
           <li>

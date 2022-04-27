@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
+import { useScrollClipPath } from './hook';
+//react
 import styled from 'styled-components';
-import Container from './components/Container'
+import Container from './components/Container';
+//styled components
+import Modal from './components/Modal';
 
 const Project = () => {
   const [activeItem, setActiveItem] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const animatedItem = {
+    0: useScrollClipPath('up', 1, 0)
+  };
+
+  console.log(modalOpen);
 
   const ProjectNav = [
     { title: 'ALL' },
@@ -57,10 +67,17 @@ const Project = () => {
             </nav>
           </div>
         </div>
-        <div className="item-container">
+
+        <div className="item-container" {...animatedItem[0]}>
           {ProjectList.map((item, index) => {
             return (
-              <a key={index} href="http://dotolee9.com">
+              <div
+                className="project-item"
+                key={index}
+                onClick={() => {
+                  setModalOpen(!modalOpen);
+                }}
+              >
                 <img src="static/01.jpg" alt="project" />
                 <div clasName="item-hover">
                   <div className="item-info">
@@ -72,17 +89,24 @@ const Project = () => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             );
           })}
         </div>
       </Container>
+      <Modal
+        visible={modalOpen}
+        onChangeState={() => {
+          setModalOpen();
+        }}
+      />
     </MyProject>
   );
 };
 
 const MyProject = styled.section`
   padding: 20vh 0;
+  display: relative;
   nav {
     display: flex;
     align-items: center;
@@ -129,10 +153,11 @@ const MyProject = styled.section`
     padding: 0;
     grid-template-columns: 1fr 1fr 1fr;
   }
-  .item-container a {
+  .item-container .project-item {
     display: block;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     &:hover {
       .item-info,
       .item-info #project-name,

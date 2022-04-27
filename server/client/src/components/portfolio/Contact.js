@@ -57,14 +57,14 @@ const MyContact = styled.section`
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 7rem;
   }
   .contact-grid p,
   h3 {
     display: block;
   }
   .contact-grid h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   .icon-grid {
     display: grid;

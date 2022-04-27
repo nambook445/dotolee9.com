@@ -22,7 +22,6 @@ import withReactContent from 'sweetalert2-react-content';
 import Iconify from '../../../components/Iconify';
 // ----------------------------------------------------------------------
 import { useDispatch } from 'react-redux';
-
 import { SERVER } from '../../../utils/domain';
 
 export default function LoginForm() {

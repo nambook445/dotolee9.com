@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const LandingPage = () => {
   return (
@@ -17,10 +17,25 @@ const LandingPage = () => {
     </MyLanding>
   );
 };
+
+
+const fadeIn = keyframes`
+from{
+  opacity: 0;
+}
+to {
+  opacity:1;
+}
+`;
 const MyLanding = styled.section`
   background: url(/static/bg.jpg);
   background-size: cover;
   height: 100vh;
+
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+  animation-name: ${fadeIn};
+  animation-fill-mode: forwards;
 `;
 const Landing = styled.div`
   display: grid;
