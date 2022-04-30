@@ -46,11 +46,12 @@ const Modal = (props) => {
 };
 
 const MyModal = styled.div`
-  position: absolute;
   display: flex;
+  position: ${(props) => (props.open ? 'fixed' : 'absolute')};
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  top: 90%;
   transition: ${(props) => (props.open ? 'all 0.2s ease-in-out 0.2s' : null)};
   transform: ${(props) => (props.open ? 'translateY(-100%)' : null)};
   opacity: ${(props) => (props.open ? 1 : 0)};
@@ -64,10 +65,8 @@ const MyModal = styled.div`
     background: #f3f3f3;
     border-radius: 5px;
     border: 2px solid #ddd;
-    width: 80%;
-    margin: 0 5rem;
+    width: 50%;
     padding: 1rem;
-    height: 100%;
     z-index: 1080;
   }
   .close-button {

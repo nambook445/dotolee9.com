@@ -22,21 +22,7 @@ export default function Register() {
             회원가입
           </Typography>
         </Stack>
-
         <RegisterForm />
-
-        <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 0 }}>
-          By registering, I agree to Minimal&nbsp;
-          <Link underline="always" color="textPrimary">
-            가입약관
-          </Link>
-          &nbsp;and&nbsp;
-          <Link underline="always" color="textPrimary">
-            개인정보 관리 정책
-          </Link>
-          .
-        </Typography>
-
         <Typography
           variant="subtitle2"
           sx={{

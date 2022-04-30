@@ -151,7 +151,7 @@ const MyProject = styled.section`
     display: grid;
     gap: 2rem;
     padding: 0;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
   .item-container .project-item {
     display: block;

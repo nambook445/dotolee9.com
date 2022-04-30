@@ -40,7 +40,7 @@ const About = () => {
 const MyAbout = styled.section`
   padding: 20vh 0;
   .about {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 10%;
   }
   .about-border img {
