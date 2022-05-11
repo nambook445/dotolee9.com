@@ -96,8 +96,8 @@ export default function TopicPage() {
           setId(res.data[0].id);
           setTitle(res.data[0].title);
           handleOnChange(res.data[0].description);
-          setImageFileNameFromServer(res.data[0].image);
           setUserId(res.data[0].user_id);
+          setImageFileNameFromServer(res.data[0].image);
         })
         .catch((err) => err.response);
     }

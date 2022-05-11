@@ -14,17 +14,23 @@ const About = () => {
         <div {...animatedItem[1]}>
           <h4>01</h4>
           <h1>
-            know
-            <br /> About me
+            <div>Know</div>
+            <div>About me</div>
           </h1>
           <p className="p">
-            Appropriately maintain standards compliant total linkage with cutting-edge action items.
-            Enthusiastically create seamless synergy rather than excellent value. Quickly promote
-            premium strategic theme areas vis-a-vis.
+            &nbsp;&nbsp;신입 프론트엔드 개발자를 지망하는 박승훈입니다. 저는 독서토론 모임을 도합
+            4년간 운영,참여할 정도로 인문학에 관심이 많고, 축구를 좋아하여 축구팀 활동도 10년간
+            꾸준히 이어가고있습니다.&nbsp;
+            <strong>
+              이 꾸준함과 자기주도 학습경험을 통해 지금은 개발자로서 갖춰야 할 역량을 키워나가며
+              가치있는 서비스를 만들어 내기 위해 고민하고 있습니다.
+            </strong>
           </p>
           <p className="p">
-            Appropriately maintain standards compliant total linkage with cutting-edge action items.
-            Enthusiastically create seamless synergy rather than excellent value.
+            &nbsp;&nbsp;<strong>생활코딩</strong> 유튜브 채널로 코딩에
+            입문했고 인터넷으로 접근할 수 있는 웹어플리캐이션을 만드는 걸 목표로 삼았습니다.
+            <strong>100일 글쓰기 챌린지라는 서비스를 배포</strong>했습니다. 각종 블로그를 참고하여
+            기능을 만들고 스택오버플로우 그리고 공식문서를 참고하여 에러를 해결했습니다. JavaScript는 <strong>모던 자바스크립트 Deep Dive</strong>라는 책으로 공부했습니다. 
           </p>
         </div>
         <div>

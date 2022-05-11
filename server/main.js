@@ -21,6 +21,7 @@ app.use(
   cors({
     origin: [
       "http://dotolee9.com",
+      "http://3.38.59.97:8080",
       "http://www.dotolee9.com",
       "http://localhost:3000",
     ],

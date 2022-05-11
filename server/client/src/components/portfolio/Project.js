@@ -13,23 +13,15 @@ const Project = () => {
     0: useScrollClipPath('up', 1, 0)
   };
 
-  console.log(modalOpen);
-
   const ProjectNav = [
-    { title: 'ALL' },
-    { title: 'PHOTOGRAPHY' },
-    { title: 'LOGO' },
-    { title: 'GRAPHICS' },
-    { title: 'ADVERTISING' },
-    { title: 'FASHION' }
+    { title: 'JavaScript' },
+    { title: 'CSS' },
+    { title: 'TypeScript' },
   ];
   const ProjectList = [
     { title: '01', category: 'ALL' },
     { title: '02', category: 'PHOTOGRAPHY' },
-    { title: '03', category: 'LOGO' },
-    { title: '04', category: 'GRAPHICS' },
-    { title: '05', category: 'ADVERTISING' },
-    { title: '06', category: 'FASHION' }
+    { title: '03', category: 'LOGO' }
   ];
   return (
     <MyProject id="project">
@@ -37,9 +29,8 @@ const Project = () => {
         <div>
           <h4>03</h4>
           <h1>
-            My
-            <br />
-            Projects
+            <div>My</div>
+            <div>Projects</div>
           </h1>
         </div>
         <div>
@@ -49,9 +40,8 @@ const Project = () => {
                 {ProjectNav.map((item, index) => {
                   const active = index === activeItem ? 'active' : null;
                   return (
-                    <li className={`${active}-li`}>
+                    <li key={index} className={`${active}-li`}>
                       <a
-                        key={index}
                         className={active}
                         onClick={() => {
                           setActiveItem(index);
@@ -76,10 +66,11 @@ const Project = () => {
                 key={index}
                 onClick={() => {
                   setModalOpen(!modalOpen);
+                  setActiveItem(index);
                 }}
               >
                 <img src="static/01.jpg" alt="project" />
-                <div clasName="item-hover">
+                <div className="item-hover">
                   <div className="item-info">
                     <div id="project-name">
                       <p>{item.title}</p>
@@ -96,6 +87,7 @@ const Project = () => {
       </Container>
       <Modal
         visible={modalOpen}
+        activeItem={activeItem}
         onChangeState={() => {
           setModalOpen();
         }}
@@ -151,7 +143,7 @@ const MyProject = styled.section`
     display: grid;
     gap: 2rem;
     padding: 0;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
   .item-container .project-item {
     display: block;

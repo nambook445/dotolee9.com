@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Container = styled.div`
   display: grid;
@@ -10,6 +10,9 @@ const Container = styled.div`
     font-family: 'Playfair Display', serif;
     font-size: 3rem;
     line-height: 70px;
+  }
+  h1 div:last-child {
+    line-height: 20px;
   }
   h4 {
     color: #425bb5;
@@ -34,4 +37,4 @@ const Container = styled.div`
     }
   }
 `;
-export default Container
+export default Container;

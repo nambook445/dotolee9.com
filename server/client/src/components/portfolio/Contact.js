@@ -12,16 +12,12 @@ const Contact = () => {
         </div>
         <div className="contact-grid">
           <div>
-            <h3>Phone Number</h3>
-            <p>+20 5555 569 42</p>
-          </div>
-          <div>
-            <h3> Mobile Numberr</h3>
-            <p>+20 5555 569 42</p>
+            <h3> Mobile Number</h3>
+            <p>010-3639-0393</p>
           </div>
           <div>
             <h3>Email</h3>
-            <p>mail@info.me </p>
+            <p>dotolee9@gmail.com </p>
           </div>
           <div>
             <h3>Social Network</h3>

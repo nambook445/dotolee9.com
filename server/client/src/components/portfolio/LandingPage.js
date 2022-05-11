@@ -6,18 +6,16 @@ const LandingPage = () => {
     <MyLanding>
       <Landing>
         <div className="text">
-          <h4>portfolio</h4>
+          <h4>portfolio 박승훈 (A.K.A. DOTOLEE)</h4>
           <h1>
-            Front
-            <br />
-            aadsf
+            <div>Front-End</div>
+            <div>Developer</div>
           </h1>
         </div>
       </Landing>
     </MyLanding>
   );
 };
-
 
 const fadeIn = keyframes`
 from{
@@ -51,6 +49,9 @@ const Landing = styled.div`
     font-family: 'Playfair Display', serif;
     font-size: 4.5rem;
     line-height: 70px;
+  }
+  .text h1 div:last-child {
+    line-height: 60px;
   }
   .text h4 {
     color: #425bb5;

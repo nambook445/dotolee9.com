@@ -2,12 +2,48 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Modal = (props) => {
-  console.log(props);
-  let VisibleProps = props.visible;
+  let { visible } = props;
+  let { activeItem } = props;
+ 
+
+  const topic = {
+    0: {
+      title: '100일 글쓰기 챌린지',
+      image: '',
+      functionList: ['CRUD', '쿠키세션 방식 로그인', '회원가입과 정보 수정', '사진업로드'],
+      skillList: [
+        'MUI',
+        'React',
+        'Redux',
+        'Axios',
+        'NodeExpress',
+        'Passport',
+        'MySQL',
+        'AWS',
+        'Nginx',
+        'HTTPS',
+        'ESlint',
+        'Git'
+      ]
+    },
+    1: {
+      title: '포트폴리오 페이지',
+      image: '',
+      functionList: ['Animation', '반응형 디자인'],
+      skillList: ['React', 'Styled-components', 'ESlint', 'Git']
+    },
+    2: {
+      title: 'Type Script',
+      image: '',
+      functionList: ['Animation', '반응형 디자인'],
+      skillList: ['React', 'Styled-components', 'ESlint', 'Git']
+    }
+  };
+
   return (
-    <MyModal open={VisibleProps}>
+    <MyModal open={visible}>
       <div className="modal-container">
-        <h2>마감일기</h2>
+        <h2>{topic[activeItem].title}</h2>
         <div className="close-button">
           <img
             src="static/icons/close.svg"
@@ -21,20 +57,18 @@ const Modal = (props) => {
           <div>
             <p>기능</p>
             <ul>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
+              {[...topic[activeItem].functionList].map((item, index) => {
+                return <li key={index}>{item}</li>;
+              })}
             </ul>
           </div>
           <img className="item-image" src="static/01.jpg" alt="" />
         </div>
         <div>
-          기술스택
-          <p>1</p>
-          <p>2</p>
-          <p>3</p>
-          <p>4</p>
+          <p>기술스택</p>
+          {[...topic[activeItem].skillList].map((item, index) => {
+            return <li key={index}>{item}</li>;
+          })}
         </div>
         <div>
           <button>깃허브</button>
@@ -47,7 +81,8 @@ const Modal = (props) => {
 
 const MyModal = styled.div`
   display: flex;
-  position: ${(props) => (props.open ? 'fixed' : 'absolute')};
+  position: ${(props) => (props.open ? 'fixed' : 'relative')};
+  height: ${(props) => (props.open ? '' : 0)};
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -66,8 +101,8 @@ const MyModal = styled.div`
     border-radius: 5px;
     border: 2px solid #ddd;
     width: 50%;
+    height: 50%;
     padding: 1rem;
-    z-index: 1080;
   }
   .close-button {
     position: absolute;
@@ -80,6 +115,9 @@ const MyModal = styled.div`
   .modal-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    li {
+      display: block;
+    }
   }
   .item-image {
     width: 100%;
