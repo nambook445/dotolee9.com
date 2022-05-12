@@ -25,10 +25,37 @@
 
 **개발툴**: NPM, PM2, Git, ESlint, Prettier
 # 5. 기능
-* **CRUD**
+### CRUD
+---
+
+Title은 필수입력입니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008299-f089fd99-7761-407b-b519-e30b0bf5907f.png)
+
+---
+
+글 작성에 성공하면 blog페이지로 이동합니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008296-76dece0c-52c2-4031-b377-bd4c2b6f8740.png)
+
+---
+
+카드 UI의 제목을 클릭하면 topic 페이지로 이동합니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008291-936bea72-ecd5-4ab8-89d0-ee8abebd4993.png)
+
+---
+
+topic.user_id와 users.id의 일치여부에 따라서 조건부 렌더링하는 방식으로 수정, 삭제 권한설정을 했습니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008287-bd4f649e-8f09-45e4-b676-3a6ff45f9460.png)
+
+---
+
+
   
-* **회원가입과 회원정보 수정**
-* **로그인**
+### 회원가입과 회원정보 수정
+### 로그인
 
 # 6. 인용
 > 인용1
