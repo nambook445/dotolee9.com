@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Modal = (props) => {
   let { visible } = props;
   let { activeItem } = props;
- 
 
   const topic = {
     0: {
@@ -24,19 +23,37 @@ const Modal = (props) => {
         'HTTPS',
         'ESlint',
         'Git'
-      ]
+      ],
+      design: {
+        title: 'MUI기반',
+        url: 'https://minimal-kit-react.vercel.app/dashboard/app',
+        link: 'Minimal Template',
+        desc: '을 이용했습니다.'
+      }
     },
     1: {
       title: '포트폴리오 페이지',
       image: '',
       functionList: ['Animation', '반응형 디자인'],
-      skillList: ['React', 'Styled-components', 'ESlint', 'Git']
+      skillList: ['React', 'Styled-components', 'ESlint', 'Git'],
+      design: {
+        title: 'HTML,CSS,Jquery로 구성된 ',
+        url: 'http://ahmedessa.net/resume/index.html',
+        link: 'HTML Template',
+        desc: '을 참고하여 React,CSS in Js로 구현했습니다.'
+      }
     },
     2: {
       title: 'Type Script',
       image: '',
       functionList: ['Animation', '반응형 디자인'],
-      skillList: ['React', 'Styled-components', 'ESlint', 'Git']
+      skillList: ['React', 'Styled-components', 'ESlint', 'Git'],
+      design: {
+        title: '',
+        url: '',
+        link: '',
+        desc: ''
+      }
     }
   };
 
@@ -61,16 +78,29 @@ const Modal = (props) => {
                 return <li key={index}>{item}</li>;
               })}
             </ul>
+            <p style={{ paddingBottom: '16px' }}>디자인</p>
+            {[topic[activeItem].design].map((item, index) => {
+              return (
+                <p key={index}>
+                  {item.title}
+                  <a href={item.url} style={{ textDecoration: 'none', color: '#425bb5' }}>
+                    {item.link}
+                  </a>
+                  {item.desc}
+                </p>
+              );
+            })}
           </div>
           <img className="item-image" src="static/01.jpg" alt="" />
         </div>
         <div>
-          <p>기술스택</p>
+          <p style={{ paddingBottom: '16px' }}>기술스택</p>
           {[...topic[activeItem].skillList].map((item, index) => {
             return <li key={index}>{item}</li>;
           })}
         </div>
-        <div>
+
+        <div className="link-button">
           <button>깃허브</button>
           <button>서비스</button>
         </div>
@@ -82,11 +112,11 @@ const Modal = (props) => {
 const MyModal = styled.div`
   display: flex;
   position: ${(props) => (props.open ? 'fixed' : 'relative')};
-  height: ${(props) => (props.open ? '' : 0)};
+  height: ${(props) => (props.open ? '100vh' : 0)};
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  top: 90%;
+  top: 100%;
   transition: ${(props) => (props.open ? 'all 0.2s ease-in-out 0.2s' : null)};
   transform: ${(props) => (props.open ? 'translateY(-100%)' : null)};
   opacity: ${(props) => (props.open ? 1 : 0)};
@@ -95,13 +125,13 @@ const MyModal = styled.div`
   .modal-container {
     display: grid;
     position: relative;
-    justify-items: center;
+    justify-items: start;
     align-items: center;
     background: #f3f3f3;
     border-radius: 5px;
     border: 2px solid #ddd;
     width: 50%;
-    height: 50%;
+    height: 100%;
     padding: 1rem;
   }
   .close-button {
@@ -122,6 +152,13 @@ const MyModal = styled.div`
   .item-image {
     width: 100%;
     height: 100%;
+  }
+  .link-button {
+    margin: 0 auto;
+    button{
+      padding: 5px;
+      margin: 0 5px;
+    }
   }
 `;
 

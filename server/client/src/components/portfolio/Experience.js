@@ -33,14 +33,7 @@ const Experience = () => {
                   <br />
                   MUI, React, Redux, Axios, NodeExpress, Passport, MySQL, AWS, Nginx, HTTPS, ESlint,
                   Git을 이용하여 서비스 구축했습니다. 하나에 유기체로서 동작하는 웹서비스에 대하여 나름의
-                  프로토타입을 갖게 됐습니다. MUI기반&nbsp;
-                  <a
-                    href="https://minimal-kit-react.vercel.app/dashboard/app"
-                    style={{ textDecoration: 'none', color: '#425bb5' }}
-                  >
-                    Minimal Template
-                  </a>
-                  을 이용했습니다.
+                  프로토타입을 갖게 됐습니다.
                 </p>
               </div>
             </li>
@@ -54,14 +47,6 @@ const Experience = () => {
                   <strong>Layout과 Component Styling</strong>
                   <br />
                   MUI를 사용하지 않고, styled-components를 이용해 UI와 Animation을 구현했습니다.
-                  디자인은&nbsp;
-                  <a
-                    href="http://ahmedessa.net/resume/index.html"
-                    style={{ textDecoration: 'none', color: '#425bb5' }}
-                  >
-                    HTML Template
-                  </a>
-                  을 참고하였습니다.
                 </p>
               </div>
             </li>
