@@ -28,7 +28,7 @@
 ### CRUD
 ---
 
-Title은 필수입력입니다.
+Title은 필수입력 조건입니다.
 
 ![캡처](https://user-images.githubusercontent.com/94095336/168008299-f089fd99-7761-407b-b519-e30b0bf5907f.png)
 
@@ -47,14 +47,33 @@ Title은 필수입력입니다.
 ---
 
 topic.user_id와 users.id의 일치여부에 따라서 조건부 렌더링하는 방식으로 수정, 삭제 권한설정을 했습니다.
+권한이 있다면 스위치로 활성/비활성 설정을 할 수 있습니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008287-bd4f649e-8f09-45e4-b676-3a6ff45f9460.png)
+
+---
+
+EC2 인스턴스에 설치된 MySQL 서버, Topic을 관리하는 테이블입니다. 로컬에서 접근할 수 있습니다. 
+
+![캡처](https://user-images.githubusercontent.com/94095336/168023762-7865c29b-c25f-40c2-b6e2-7d715be5d9d2.png)
+
+---
+
+### 회원가입과 회원정보 수정
+
+Yup 라이브러리로 유효성 검사를 했습니다. [Source Code](https://github.com/nambook445/react_----/blob/master/server/client/src/sections/authentication/register/RegisterForm.js)
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008285-aa5fb745-239e-48ad-b283-67b96530e728.png)
+
+---
+
+
 
 ![캡처](https://user-images.githubusercontent.com/94095336/168008287-bd4f649e-8f09-45e4-b676-3a6ff45f9460.png)
 
 ---
 
 
-  
-### 회원가입과 회원정보 수정
 ### 로그인
 
 # 6. 인용
