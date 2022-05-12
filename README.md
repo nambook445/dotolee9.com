@@ -1,8 +1,8 @@
 # 100일 글쓰기 챌린지
 
-# 1. 소개
+## 1. 소개
   글쓰기 습관을 기르기 위한 웹어플리캐이션입니다.  
-# 2. 목차
+## 2. 목차
 * 사용법
 * 기술스택과 사용한 라이브러리
 * 기능
@@ -10,10 +10,10 @@
   * 회원가입과 회원정보 수정
   * 로그인
 * 참고
-# 3. 사용법
+## 3. 사용법
 [서비스 주소](http://dotolee9.com)
 로그인하지 않아도 글 작성과 열람이 가능하지만, 수정 또는 삭제작업을 할 수 없습니다.
-# 4. 기술스택과 사용한 라이브러리
+## 4. 기술스택과 사용한 라이브러리
 **UI & 디자인**: MUI, Minimal React(대쉬보드 무료템플릿), Styled-Components, SweetAlert2
 
 **클라이언트**: React, React hook, Redux, Redux Persist(session storage), Axios, Create proxy middleware, React Quill, Yup, Formik, Helmet
@@ -23,7 +23,7 @@
 **배포**: AWS EC2, Route 53, Ubuntu, Nginx
 
 **개발툴**: NPM, PM2, Git, ESlint, Prettier
-# 5. 기능
+## 5. 기능
 ### CRUD
 ---
 
@@ -123,15 +123,15 @@ passport는 쿠키에 담긴 세션아이디를 보고 세션아이디에 담긴
 ![캡처](https://user-images.githubusercontent.com/94095336/168044801-0846d971-3f96-47a4-9b56-1445f2f2b7cf.png)
 
 ---
-# 6. 참고
+## 6. 참고
 
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+### Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 > Free React Admin Dashboard made with Material-UI components and React.
 
-## License
+### License
 
 Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
 
