@@ -1,30 +1,80 @@
-# MARKDOWN
-MARKDOWN 정리, 실습 for README.md
+# 100일 글쓰기 챌린지
 
-# 1. 제목(글머리) 작성
-# H1 제목  
-## H2 부제목
-### H3 소제목
-#### H4 제목4
-##### H5 제목5
-###### H6 제목6
+# 1. 소개
+  글쓰기 습관을 기르기 위한 웹어플리캐이션입니다.  
+# 2. 목차
+* 사용법
+* 기술스택과 사용한 라이브러리
+* 기능
+  * CRUD
+  * 회원가입과 회원정보 수정
+  * 로그인
+* 참고
+* 개선할 사항 및 추가할 기능
+# 3. 사용법
+[서비스 주소](http://dotolee9.com)
+로그인하지 않아도 글 작성과 열람이 가능하지만, 수정 또는 삭제할 수 없습니다.
+# 4. 기술스택과 사용한 라이브러리
+**UI & 디자인**: MUI, Minimal React(대쉬보드 무료템플릿), Styled-Components, SweetAlert2
+
+**클라이언트**: React, React hook, Redux, Redux Persist(session storage), Axios, Create proxy middleware, React Quill, Yup, Formik, Helmet
+
+**서버**: NodeExpress, Passport JS(local strategy), Bycript, MySQL, MySQL SessionStore, Multer, CORS
+
+**배포**: AWS EC2, Route 53, Ubuntu, Nginx
+
+**개발툴**: NPM, PM2, Git, ESlint, Prettier
+# 5. 기능
+### CRUD
+---
+
+Title은 필수입력 조건입니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008299-f089fd99-7761-407b-b519-e30b0bf5907f.png)
+
+---
+
+글 작성에 성공하면 blog페이지로 이동합니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008296-76dece0c-52c2-4031-b377-bd4c2b6f8740.png)
+
+---
+
+카드 UI의 제목을 클릭하면 topic 페이지로 이동합니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008291-936bea72-ecd5-4ab8-89d0-ee8abebd4993.png)
+
+---
+
+topic.user_id와 users.id의 일치여부에 따라서 조건부 렌더링하는 방식으로 수정, 삭제 권한설정을 했습니다.
+권한이 있다면 스위치로 활성/비활성 설정을 할 수 있습니다.
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008287-bd4f649e-8f09-45e4-b676-3a6ff45f9460.png)
+
+---
+
+EC2 인스턴스에 설치된 MySQL 서버, Topic을 관리하는 테이블입니다. 로컬에서 접근할 수 있습니다. 
+
+![캡처](https://user-images.githubusercontent.com/94095336/168023762-7865c29b-c25f-40c2-b6e2-7d715be5d9d2.png)
+
+---
+
+### 회원가입과 회원정보 수정
+
+Yup 라이브러리로 유효성 검사를 했습니다. [Source Code](https://github.com/nambook445/react_----/blob/master/server/client/src/sections/authentication/register/RegisterForm.js)
+
+![캡처](https://user-images.githubusercontent.com/94095336/168008285-aa5fb745-239e-48ad-b283-67b96530e728.png)
+
+---
 
 
-# 2. 번호 없는 리스트 작성
-* 리스트1
-  - 리스트2
-    + 리스트3
-    
-# 3. 번호 있는 리스트 작성
-1. 리스트1
-2. 리스트2
-3. 리스트3 
 
-# 4. 이텔릭체(기울어진 글씨) 작성
-*텍스트*
+![캡처](https://user-images.githubusercontent.com/94095336/168008287-bd4f649e-8f09-45e4-b676-3a6ff45f9460.png)
 
-# 5. 굵은 글씨 작성
-**텍스트**
+---
+
+
+### 로그인
 
 # 6. 인용
 > 인용1
