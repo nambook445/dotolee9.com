@@ -10,7 +10,6 @@ import { BlogPost } from '../sections/@dashboard/blog';
 import axios from 'axios';
 // utils
 import { SERVER } from '../utils/domain';
-// ----------------------------------------------------------------------
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
