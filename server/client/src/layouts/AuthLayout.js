@@ -5,8 +5,6 @@ import { Typography } from '@mui/material';
 // components
 import Logo from '../components/Logo';
 
-// ----------------------------------------------------------------------
-
 const HeaderStyle = styled('header')(({ theme }) => ({
   top: 0,
   zIndex: 9,
@@ -22,8 +20,6 @@ const HeaderStyle = styled('header')(({ theme }) => ({
     padding: theme.spacing(7, 5, 0, 7)
   }
 }));
-
-// ----------------------------------------------------------------------
 
 AuthLayout.propTypes = {
   children: PropTypes.node

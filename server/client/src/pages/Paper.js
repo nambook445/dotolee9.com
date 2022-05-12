@@ -28,9 +28,8 @@ import axios from 'axios';
 import './Paper.css';
 // utils
 import { SERVER } from '../utils/domain';
-// ----------------------------------------------------------------------
-// //
 
+// ReactQuill
 const modules = {
   toolbar: [
     [{ font: [] }],
@@ -58,32 +57,25 @@ const formats = [
   'color',
   'background'
 ];
-
-// ----------------------------------------------------------------------
-
-// ----------------------------------------------------------------------
+// SweetAlert2
+const MySwal = withReactContent(Swal);
+// CSS
+const Input = styled('input')({
+  display: 'none'
+});
 
 export default function PaperPage() {
   const [desc, setdesc] = useState('');
   const [imgBase64, setImgBase64] = useState(null); // 파일 base64
   const [imgFile, setImgFile] = useState(null); //파일
-
   const navigate = useNavigate();
 
-  const Input = styled('input')({
-    display: 'none'
-  });
-  // SweetAlert2
-  const MySwal = withReactContent(Swal);
-  function handleOnChange(value) {
+  const handleOnChange = (value) => {
     setdesc(value);
-  }
-
+  };
   const handleChangeFile = (e) => {
     let reader = new FileReader();
-
     reader.onloadend = () => {
-      // 2. 읽기가 완료되면 아래코드가 실행됩니다.
       const base64 = reader.result;
       if (base64) {
         setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
@@ -94,17 +86,15 @@ export default function PaperPage() {
       setImgFile(e.target.files[0]); // 파일 상태 업데이트
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     let data = new FormData();
     data.append('post_image', imgFile);
     data.set('title', e.target[0].value);
     data.set('description', desc);
-    for (var pair of data.entries()) {
+    for (const pair of data.entries()) {
       console.log(pair[0] + ', ' + pair[1]);
     }
-
     await axios
       .post(`${SERVER}/api/paper`, data, {
         withCredentials: true

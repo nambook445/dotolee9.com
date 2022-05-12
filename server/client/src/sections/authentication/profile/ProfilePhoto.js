@@ -15,13 +15,12 @@ export default function ProfilePhoto() {
   const { user } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const profileImage = `${SERVER}/images/profile/${user.image}`;
-  async function handleUpload(e) {
+  const handleUpload = async (e) => {
     const formData = new FormData();
     formData.append('profile_image', e.target.files[0]);
     await axios
       .post(`${SERVER}/user/profile`, formData, { withCredentials: true })
       .then((res) => {
-        console.log(res);
         dispatch({
           type: 'USER',
           user: {
@@ -33,7 +32,7 @@ export default function ProfilePhoto() {
         });
       })
       .catch((err) => console.log(err.response));
-  }
+  };
   return (
     <Card sx={{ height: '100%' }}>
       <Stack sx={{ height: '100%' }} justifyContent="space-between">

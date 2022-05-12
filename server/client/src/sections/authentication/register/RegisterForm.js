@@ -18,15 +18,14 @@ import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
 
-//----------------------------------------------------------------------
+// SweetAlert2
+const MySwal = withReactContent(Swal);
 
 export default function RegisterForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // SweetAlert2
-  const MySwal = withReactContent(Swal);
 
   const RegisterSchema = Yup.object().shape({
     username: Yup.string()
@@ -66,7 +65,6 @@ export default function RegisterForm() {
           withCredentials: true
         })
         .then((res) => {
-          console.log(res.data);
           dispatch({
             type: 'USER',
             user: {

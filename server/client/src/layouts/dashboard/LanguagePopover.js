@@ -5,8 +5,6 @@ import { Box, MenuItem, ListItemIcon, ListItemText, IconButton } from '@mui/mate
 // components
 import MenuPopover from '../../components/MenuPopover';
 
-// ----------------------------------------------------------------------
-
 const LANGS = [
   {
     value: 'en',
@@ -24,8 +22,6 @@ const LANGS = [
     icon: '/static/icons/ic_flag_fr.svg'
   }
 ];
-
-// ----------------------------------------------------------------------
 
 export default function LanguagePopover() {
   const anchorRef = useRef(null);

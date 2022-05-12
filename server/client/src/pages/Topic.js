@@ -28,7 +28,6 @@ import Iconify from '../components/Iconify';
 // quill editor
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-
 // axios
 import axios from 'axios';
 // utils
@@ -46,7 +45,6 @@ const modules = {
     [{ align: [] }, { color: [] }, { background: [] }]
   ]
 };
-
 const formats = [
   'font',
   'header',
@@ -63,26 +61,26 @@ const formats = [
   'color',
   'background'
 ];
-
-// 삭제시 서버에 이미지파일이 있다면 같이 삭제 ㄱㄱ
+// SweetAlert2
+const MySwal = withReactContent(Swal);
+// CSS
+const Input = styled('input')({
+  display: 'none'
+});
 
 export default function TopicPage() {
   const navigate = useNavigate();
+  const params = useParams();
   const [status, setStatus] = useState(false);
   const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [imageFileNameFromServer, setImageFileNameFromServer] = useState('');
   const [userId, setUserId] = useState('');
-
   const [checked, setChecked] = useState(true);
-
   const [imageUpdate, setImageUpdate] = useState(false);
   const [imgBase64, setImgBase64] = useState(null); // image파일 base64
   const [imgFile, setImgFile] = useState(null); //파일
-  const params = useParams();
-  // SweetAlert2
-  const MySwal = withReactContent(Swal);
   const { user } = useSelector((state) => state.userData);
 
   useEffect(() => {
@@ -92,7 +90,6 @@ export default function TopicPage() {
           withCredentials: true
         })
         .then((res) => {
-          console.log(res.data);
           setId(res.data[0].id);
           setTitle(res.data[0].title);
           handleOnChange(res.data[0].description);
@@ -103,13 +100,10 @@ export default function TopicPage() {
     }
     fetchData();
   }, [params, userId, checked]);
-  const Input = styled('input')({
-    display: 'none'
-  });
 
-  function handleOnChange(value) {
+  const handleOnChange = (value) => {
     setDesc(value);
-  }
+  };
 
   const handleChangeFile = (e) => {
     e.preventDefault();
@@ -130,14 +124,12 @@ export default function TopicPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     let data = new FormData();
     data.append('post_image', imgFile);
     data.set('id', id);
     data.set('title', e.target[0].value);
     data.set('description', desc);
     data.set('imageFileNameFromServer', imageFileNameFromServer);
-
     await axios
       .put(`${SERVER}/api/topic`, data, {
         withCredentials: true
@@ -221,7 +213,6 @@ export default function TopicPage() {
       })
       .catch((err) => err.response);
   };
-
   // Enter키로 submit되는 상황방지
   const handleOnKeyPress = (e) => {
     if (e.code === 'Enter') {

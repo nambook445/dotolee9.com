@@ -25,7 +25,6 @@ export default function DashboardApp() {
   const [topicLength, setTopicLength] = useState(0);
   const [succession, setSuccession] = useState(0);
 
-  console.log(topic);
   useEffect(() => {
     const callTopicState = async () => {
       await axios
