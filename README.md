@@ -104,7 +104,7 @@ Passport에 의한 인증에 성공하면 serializeUser함수가 호출되고 �
 https://user-images.githubusercontent.com/94095336/168037341-fd452793-9b07-409d-ac81-6ce178615f92.png)
 
 쿠키는 브라우저에 저장되고 서버에 요청할 때 요청헤더에 담겨서 서버에 전달됩니다.
-passport는 쿠키에 담긴 세션아이디를 보고 세션아이디에 담긴 식별자로 user를 판단합니다.
+passport는 쿠키에 담긴 세션아이디를 보고 세션아이디에 담긴 식별자로 user를 판단합니다. 이 때 인증은 deserializeUser함수가 호출되어 식별자를 판단하는 방식으로 이뤄집니다. 
 
 ![캡처](https://user-images.githubusercontent.com/94095336/168037339-49c6b0de-a96a-4015-997e-91be7e183748.png)
 
