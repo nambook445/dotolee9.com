@@ -20,7 +20,6 @@ import Page from '../components/Page';
 import Iconify from '../components/Iconify';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-
 import { styled } from '@mui/material/styles';
 // axios
 import axios from 'axios';
@@ -82,7 +81,7 @@ export default function PaperPage() {
       }
     };
     if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
+      reader.readAsDataURL(e.target.files[0]); // 파일을 읽어 버퍼에 저장합니다.
       setImgFile(e.target.files[0]); // 파일 상태 업데이트
     }
   };

@@ -10,7 +10,7 @@ const saltRounds = 10;
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, "./public/images/profile"); // './public/images/' directory name where save the file
+    callBack(null, "./public/images/profile");
   },
   filename: (req, file, callBack) => {
     callBack(

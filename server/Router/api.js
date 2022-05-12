@@ -7,7 +7,7 @@ const fs = require("fs");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, "./public/images/post"); // './public/images/' directory name where save the file
+    callBack(null, "./public/images/post");
   },
   filename: (req, file, callBack) => {
     callBack(

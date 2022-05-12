@@ -23,7 +23,7 @@ const Contact = () => {
             <h3>Social Network</h3>
             <ul className="icon-grid">
               <li>
-                <a href="#">
+                <a href="https://github.com/nambook445">
                   <img src="static/icons/github.svg" alt="github" />
                 </a>
               </li>
@@ -50,7 +50,7 @@ const MyContact = styled.section`
   background: #f3f3f3;
   .contact-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
     margin-top: 7rem;

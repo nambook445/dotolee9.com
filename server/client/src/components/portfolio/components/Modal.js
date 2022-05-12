@@ -29,6 +29,10 @@ const Modal = (props) => {
         url: 'https://minimal-kit-react.vercel.app/dashboard/app',
         link: 'Minimal Template',
         desc: '을 이용했습니다.'
+      },
+      link: {
+        git: 'https://github.com/nambook445',
+        service: 'http://dotolee9.com'
       }
     },
     1: {
@@ -41,6 +45,10 @@ const Modal = (props) => {
         url: 'http://ahmedessa.net/resume/index.html',
         link: 'HTML Template',
         desc: '을 참고하여 React,CSS in Js로 구현했습니다.'
+      },
+      link: {
+        git: 'https://github.com/nambook445/react_----',
+        service: 'http://dotolee9.com'
       }
     },
     2: {
@@ -53,6 +61,10 @@ const Modal = (props) => {
         url: '',
         link: '',
         desc: ''
+      },
+      link: {
+        git: 'https://github.com/nambook445',
+        service: 'http://dotolee9.com'
       }
     }
   };
@@ -101,8 +113,20 @@ const Modal = (props) => {
         </div>
 
         <div className="link-button">
-          <button>깃허브</button>
-          <button>서비스</button>
+          <button
+            onClick={() => {
+              window.location = topic[activeItem].link.git;
+            }}
+          >
+            깃허브
+          </button>
+          <button
+            onClick={() => {
+              window.location = topic[activeItem].link.service;
+            }}
+          >
+            서비스
+          </button>
         </div>
       </div>
     </MyModal>
@@ -155,7 +179,7 @@ const MyModal = styled.div`
   }
   .link-button {
     margin: 0 auto;
-    button{
+    button {
       padding: 5px;
       margin: 0 5px;
     }
