@@ -13,15 +13,11 @@ const Project = () => {
     0: useScrollClipPath('up', 1, 0)
   };
 
-  const ProjectNav = [
-    { title: 'JavaScript' },
-    { title: 'CSS' },
-    { title: 'TypeScript' },
-  ];
+  const ProjectNav = [{ title: 'JavaScript' }, { title: 'CSS' }, { title: 'TypeScript' }];
   const ProjectList = [
-    { title: '01', category: 'ALL' },
-    { title: '02', category: 'PHOTOGRAPHY' },
-    { title: '03', category: 'LOGO' }
+    { title: '01', category: '100일 글쓰기 챌린지', image: 'static/mainpage.png' },
+    { title: '02', category: '포트폴리오 페이지', image: 'static/landingpage.png' },
+    { title: '03', category: 'TypeScript', image: 'static/01.jpg' }
   ];
   return (
     <MyProject id="project">
@@ -69,7 +65,7 @@ const Project = () => {
                   setActiveItem(index);
                 }}
               >
-                <img src="static/01.jpg" alt="project" />
+                <img src={item.image} alt={item.category} />
                 <div className="item-hover">
                   <div className="item-info">
                     <div id="project-name">
@@ -104,7 +100,6 @@ const MyProject = styled.section`
     align-items: center;
     margin: 1.5rem 0;
   }
-
   ul {
     padding: 1rem 0;
     line-height: 1.5em;
@@ -112,7 +107,6 @@ const MyProject = styled.section`
   ul li:first-child {
     padding-left: 0;
   }
-
   li {
     display: inline-block;
     margin-right: 1.5rem;
@@ -145,8 +139,13 @@ const MyProject = styled.section`
     padding: 0;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
+ .item-container img {
+    height: 100%;
+    width: 100%;
+  }
   .item-container .project-item {
     display: block;
+    min-height: 354.67px;
     position: relative;
     overflow: hidden;
     cursor: pointer;

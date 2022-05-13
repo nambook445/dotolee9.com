@@ -32,8 +32,8 @@ const Experience = () => {
                   <strong>웹서비스 전반에 대한 이해</strong>
                   <br />
                   MUI, React, Redux, Axios, NodeExpress, Passport, MySQL, AWS, Nginx, HTTPS, ESlint,
-                  Git을 이용하여 서비스 구축했습니다. 하나에 유기체로서 동작하는 웹서비스에 대하여 나름의
-                  프로토타입을 갖게 됐습니다.
+                  Git을 이용하여 서비스 구축했습니다. 하나에 유기체로서 동작하는 웹서비스에 대하여
+                  나름의 프로토타입을 갖게 됐습니다.
                 </p>
               </div>
             </li>
@@ -59,7 +59,7 @@ const Experience = () => {
                 <p>
                   <strong>자바스크립트의 기본 개념과 동작 원리</strong>
                   <br />
-                  JavaScript 동작원리와 ESNEXT에 추가된 문법을 공부했습니다. 이를 바탕으로 리펙토링을 진행하였습니다.
+                  JavaScript 동작원리와 ESNEXT에 추가된 문법을 공부했습니다.
                 </p>
               </div>
             </li>
@@ -67,13 +67,12 @@ const Experience = () => {
               <label></label>
               <div {...animatedItem[3]}>
                 <p className="timeline-thumbnail">May 2022 - Present</p>
-                <h3>TypeScript</h3>
-                <h4>카카오 API를 이용한 도서검색 어플리캐이션</h4>
+                <h3>카카오 API를 이용한 도서검색 어플리캐이션</h3>
+                <h4>TypeScript</h4>
                 <p>
-                  <strong>Projektmanagement mit Scrum</strong>
+                  <strong>진행중</strong>
                   <br />
-                  Ständiges Verbessern des agilen Entwicklungsprozesses beispielsweise durch Grunt,
-                  Yeoman, GIT, JIRA und BrowserStack.
+                  TypeScript에 대한 이해와 100일 글쓰기 챌린지 서비스에 추가할 목적으로 진행하고 있습니다.
                 </p>
               </div>
             </li>

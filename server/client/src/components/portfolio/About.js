@@ -58,6 +58,9 @@ const MyAbout = styled.section`
     position: relative;
     ::before {
       display: block;
+      background: url(static/profile01.png);
+      background-repeat: no-repeat;
+      background-size: cover;
       position: absolute;
       border: 10px solid #425bb5;
       width: 100%;

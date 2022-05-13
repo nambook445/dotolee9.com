@@ -1,2 +1,2 @@
-export const SERVER = 'http://localhost:8080';
-export const CLIENT = 'http://localhost:3000';
+export const SERVER = 'http://dotolee9:8080.com';
+export const CLIENT = 'http://dotolee9.com';

@@ -8,7 +8,7 @@ const Modal = (props) => {
   const topic = {
     0: {
       title: '100일 글쓰기 챌린지',
-      image: '',
+      image: 'static/mainpage.png',
       functionList: ['CRUD', '쿠키세션 방식 로그인', '회원가입과 정보 수정', '사진업로드'],
       skillList: [
         'MUI',
@@ -31,13 +31,13 @@ const Modal = (props) => {
         desc: '을 이용했습니다.'
       },
       link: {
-        git: 'https://github.com/nambook445',
+        git: 'https://github.com/nambook445/react_----',
         service: 'http://dotolee9.com'
       }
     },
     1: {
       title: '포트폴리오 페이지',
-      image: '',
+      image: 'static/landingpage.png',
       functionList: ['Animation', '반응형 디자인'],
       skillList: ['React', 'Styled-components', 'ESlint', 'Git'],
       design: {
@@ -47,13 +47,13 @@ const Modal = (props) => {
         desc: '을 참고하여 React,CSS in Js로 구현했습니다.'
       },
       link: {
-        git: 'https://github.com/nambook445/react_----',
+        git: 'https://github.com/nambook445/react_----/tree/master/server/client/src/components/portfolio',
         service: 'http://dotolee9.com'
       }
     },
     2: {
       title: 'Type Script',
-      image: '',
+      image: 'static/01.jpg',
       functionList: ['Animation', '반응형 디자인'],
       skillList: ['React', 'Styled-components', 'ESlint', 'Git'],
       design: {
@@ -84,13 +84,13 @@ const Modal = (props) => {
         </div>
         <div className="modal-item">
           <div>
-            <p>기능</p>
+            <h3>기능</h3>
             <ul>
               {[...topic[activeItem].functionList].map((item, index) => {
                 return <li key={index}>{item}</li>;
               })}
             </ul>
-            <p style={{ paddingBottom: '16px' }}>디자인</p>
+            <h3 style={{ paddingBottom: '16px' }}>디자인</h3>
             {[topic[activeItem].design].map((item, index) => {
               return (
                 <p key={index}>
@@ -103,10 +103,10 @@ const Modal = (props) => {
               );
             })}
           </div>
-          <img className="item-image" src="static/01.jpg" alt="" />
+          <img className="item-image" src={topic[activeItem].image} alt="" />
         </div>
         <div>
-          <p style={{ paddingBottom: '16px' }}>기술스택</p>
+          <h3 style={{ paddingBottom: '16px' }}>기술스택</h3>
           {[...topic[activeItem].skillList].map((item, index) => {
             return <li key={index}>{item}</li>;
           })}
