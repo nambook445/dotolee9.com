@@ -51,10 +51,10 @@ export default function BlogPost(post, index) {
   const latestPost = index === 1 || index === 2;
 
   function CoverImg(image) {
-    if (image.image !== null) {
+    if (image.image !== null && 'null') {
       return <CoverImgStyle alt={image.image} src={`${SERVER}/images/post/${image.image}`} />;
     } else {
-      return <CoverImgStyle alt={image.image} src={`${SERVER}/assets/images/basic-post.jpg`} />;
+      return <CoverImgStyle alt={image.image} src="/static/image/basic-post.jpg" />;
     }
   }
   return (
@@ -95,7 +95,7 @@ export default function BlogPost(post, index) {
           />
           <AvatarStyle
             alt={post.nickname}
-            src={`${SERVER}/images/profile/${post.profile}`}
+            src={ post.profile ? `${SERVER}/images/profile/${post.profile}` : null }
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
