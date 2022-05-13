@@ -118,7 +118,7 @@ const useScrollFadeIn = (direction = 'up', duration = 1, delay = 0) => {
 
 export default useScrollFadeIn;
 ```
-React hook을 사용한 Project  
+React hook을 사용한 Project 컴
 ```
 import React, { useState } from 'react';
 import { useScrollClipPath } from './hook';
