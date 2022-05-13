@@ -96,7 +96,8 @@ export default function PaperPage() {
     }
     await axios
       .post(`${SERVER}/api/paper`, data, {
-        withCredentials: true
+        withCredentials: true,
+        headers: { 'Content-Type': 'application/json' }
       })
       .then((res) => {
         MySwal.fire({

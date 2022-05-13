@@ -18,11 +18,14 @@ export default function Blog() {
   useEffect(() => {
     setLoading(false);
     axios
-      .get(`${SERVER}/api/blog`)
+      .get(`${SERVER}/api/blog`, {
+        withCredentials: true,
+        headers: { 'Content-Type': 'application/json' }
+      })
       .then((res) => {
         setPosts(res.data);
         setLoading(false);
-         console.log(res.data);
+        console.log(res.data);
       })
       .catch((err) => err.response);
   }, []);

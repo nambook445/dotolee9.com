@@ -30,7 +30,8 @@ export default function DashboardApp() {
       await axios
         .get(`${SERVER}/api/topic`, {
           params: { id: user.id },
-          withCredentials: true
+          withCredentials: true,
+          headers: { 'Content-Type': 'application/json' }
         })
         .then((res) => {
           let myData = res.data.topic.map((key) => key.created);

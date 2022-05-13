@@ -132,7 +132,8 @@ export default function TopicPage() {
     data.set('imageFileNameFromServer', imageFileNameFromServer);
     await axios
       .put(`${SERVER}/api/topic`, data, {
-        withCredentials: true
+        withCredentials: true,
+        headers: { 'Content-Type': 'application/json' }
       })
       .then((res) => {
         console.log(res);
@@ -171,7 +172,7 @@ export default function TopicPage() {
           sx={{ width: '100%', height: 'auto' }}
           component="img"
           height="140"
-          src={`${SERVER}/assets/basic-post.jpg`}
+          src='static/image/basic-post.jpg'
         />
       );
     }

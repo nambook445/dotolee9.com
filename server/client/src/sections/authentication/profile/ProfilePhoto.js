@@ -19,7 +19,10 @@ export default function ProfilePhoto() {
     const formData = new FormData();
     formData.append('profile_image', e.target.files[0]);
     await axios
-      .post(`${SERVER}/user/profile`, formData, { withCredentials: true })
+      .post(`${SERVER}/user/profile`, formData, {
+        withCredentials: true,
+        headers: { 'Content-Type': 'application/json' }
+      })
       .then((res) => {
         dispatch({
           type: 'USER',
