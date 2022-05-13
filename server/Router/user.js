@@ -32,7 +32,7 @@ router.post("/login", async function (req, res, next) {
     req.logIn(user, function (err) {
       console.log(req.user);
       if (err) return next(err);
-      return res.json(req.user);
+      return res.send(req.user);
     });
   })(req, res, next);
 });

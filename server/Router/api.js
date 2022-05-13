@@ -26,7 +26,8 @@ router.get("/blog", (req, res) => {
   const sql = `SELECT topic.id, topic.title, topic.description, DATE_FORMAT(topic.created, '%Y-%m-%d') AS created, topic.image, users.nickname, users.image AS profile FROM topic LEFT JOIN users ON topic.user_id = users.id ORDER BY topic.id DESC `;
   db.query(sql, (err, results) => {
     const data = results;
-    res.json(data);
+    console.log(data)
+    res.send(data);
   });
 });
 // 상세보기 라우터
@@ -46,7 +47,7 @@ router.post("/topic", (req, res) => {
   const sql = `SELECT topic.id, topic.title, topic.description, DATE_FORMAT(topic.created, '%Y-%m-%d') AS created, topic.user_id, topic.image, users.nickname, users.image AS profile FROM topic LEFT JOIN users ON topic.user_id = users.id WHERE topic.id=? `;
   db.query(sql, [req.body.id], (err, results) => {
     const data = results;
-    res.json(data);
+    res.send(data);
   });
 });
 router.put("/topic", upload.single("post_image"), (req, res) => {
@@ -108,7 +109,7 @@ router.post("/paper", upload.single("post_image"), (req, res) => {
       [req.body.title, req.body.description, req.user, req.file.filename],
       (err, results) => {
         if (err) throw err;
-        res.status(200).json("ok");
+        res.status(200).send("ok");
       }
     );
   } else {
@@ -118,7 +119,7 @@ router.post("/paper", upload.single("post_image"), (req, res) => {
       [req.body.title, req.body.description, req.user],
       (err, results) => {
         if (err) throw err;
-        res.status(200).json("ok");
+        res.status(200).send("ok");
       }
     );
   }
