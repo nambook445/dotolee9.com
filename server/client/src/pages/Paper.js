@@ -27,7 +27,7 @@ import axios from 'axios';
 import './Paper.css';
 // utils
 import { SERVER } from '../utils/domain';
-
+import { useSelector } from 'react-redux';
 // ReactQuill
 const modules = {
   toolbar: [
@@ -67,6 +67,7 @@ export default function PaperPage() {
   const [desc, setdesc] = useState('');
   const [imgBase64, setImgBase64] = useState(null); // 파일 base64
   const [imgFile, setImgFile] = useState(null); //파일
+  const { user } = useSelector((state) => state.userData);
   const navigate = useNavigate();
 
   const handleOnChange = (value) => {
@@ -91,13 +92,14 @@ export default function PaperPage() {
     data.append('post_image', imgFile);
     data.set('title', e.target[0].value);
     data.set('description', desc);
+    data.set('id', user.id);
     for (const pair of data.entries()) {
       console.log(pair[0] + ', ' + pair[1]);
     }
     await axios
       .post(`${SERVER}/api/paper`, data, {
         withCredentials: true,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'multipart/ form - data' }
       })
       .then((res) => {
         MySwal.fire({
