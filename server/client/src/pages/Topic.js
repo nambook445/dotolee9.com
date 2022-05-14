@@ -172,7 +172,7 @@ export default function TopicPage() {
           sx={{ width: '100%', height: 'auto' }}
           component="img"
           height="140"
-          src='static/image/basic-post.jpg'
+          src={`${SERVER}static/assets/basic-post.jpg`}
         />
       );
     }
