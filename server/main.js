@@ -20,8 +20,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://dotolee9.com*",
-      "http://www.dotolee9.com*",
+      "http://dotolee9.com",
+      "http://www.dotolee9.com",
     ],
     credentials: true,
   })
