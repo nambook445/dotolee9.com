@@ -99,7 +99,7 @@ export default function PaperPage() {
     await axios
       .post(`${SERVER}/api/paper`, data, {
         withCredentials: true,
-        headers: { 'Content-Type': 'multipart/ form - data' }
+        headers: { 'Content-Type': 'multipart/form - data' }
       })
       .then((res) => {
         MySwal.fire({

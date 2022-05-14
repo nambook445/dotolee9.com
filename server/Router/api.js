@@ -115,7 +115,7 @@ router.post("/paper", upload.single("post_image"), (req, res) => {
     const textSql = `INSERT INTO topic (title, description, created, user_id) VALUES(?, ?, NOW(), ?)`;
     db.query(
       textSql,
-      [req.body.title, req.body.description, req.user],
+      [req.body.title, req.body.description, req.body.id],
       (err, results) => {
         if (err) throw err;
         res.status(200).send("ok");
