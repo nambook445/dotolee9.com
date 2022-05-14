@@ -29,7 +29,6 @@ export default function Blog() {
       })
       .catch((err) => err.response);
   }, []);
- 
 
   return (
     <Page title="Blog | DOTOLEE">
@@ -50,20 +49,21 @@ export default function Blog() {
 
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between"></Stack>
         <Grid container spacing={3}>
-          {!loading &&
-            posts.map((posts) => {
-              return (
-                <BlogPost
-                  key={posts.id}
-                  id={posts.id}
-                  title={posts.title}
-                  created={posts.created}
-                  image={posts.image}
-                  nickname={posts.nickname}
-                  profile={posts.profile}
-                />
-              );
-            })}
+          {!loading
+            ? posts.map((posts) => {
+                return (
+                  <BlogPost
+                    key={posts.id}
+                    id={posts.id}
+                    title={posts.title}
+                    created={posts.created}
+                    image={posts.image}
+                    nickname={posts.nickname}
+                    profile={posts.profile}
+                  />
+                );
+              })
+            : null}
         </Grid>
       </Container>
     </Page>

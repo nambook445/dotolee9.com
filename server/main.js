@@ -22,6 +22,7 @@ app.use(
     origin: [
       "http://dotolee9.com",
       "http://www.dotolee9.com",
+      "http://3.38.59.97:80",
     ],
     credentials: true,
   })
