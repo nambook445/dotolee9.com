@@ -16,18 +16,23 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(false);
-    axios
-      .get(`${SERVER}/api/blog`, {
-        withCredentials: true
-      })
-      .then((res) => {
-        setPosts(res.data);
-        setLoading(false);
-      })
-      .catch((err) => err.response);
-  }, []);
- console.log(posts)
+    async function fetchData() {
+      const response = await axios
+        .get(`${SERVER}/api/blog`, {
+          withCredentials: true
+        })
+        .then((res) => {
+          setPosts(res.data);
+          setLoading(false);
+        })
+        .catch((err) => err.response);
+        console.log('새로운',response);
+    }
+    fetchData();
+  }, [loading]);
+
+  console.log(posts);
+  console.log(loading);
 
   return (
     <Page title="Blog | DOTOLEE">
@@ -48,21 +53,20 @@ export default function Blog() {
 
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between"></Stack>
         <Grid container spacing={3}>
-          {!loading
-            ? [...posts].map((posts) => {
-                return (
-                  <BlogPost
-                    key={posts.id}
-                    id={posts.id}
-                    title={posts.title}
-                    created={posts.created}
-                    image={posts.image}
-                    nickname={posts.nickname}
-                    profile={posts.profile}
-                  />
-                );
-              })
-            : null}
+          {!loading &&
+            [...posts].map((posts) => {
+              return (
+                <BlogPost
+                  key={posts.id}
+                  id={posts.id}
+                  title={posts.title}
+                  created={posts.created}
+                  image={posts.image}
+                  nickname={posts.nickname}
+                  profile={posts.profile}
+                />
+              );
+            })}
         </Grid>
       </Container>
     </Page>
