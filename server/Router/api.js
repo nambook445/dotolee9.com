@@ -27,7 +27,7 @@ router.get("/blog", (req, res) => {
   db.query(sql, (err, results) => {
     const data = results;
     console.log(data)
-    res.send(data);
+    res.json(data);
   });
 });
 // 상세보기 라우터

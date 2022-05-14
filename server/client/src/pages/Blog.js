@@ -17,7 +17,7 @@ export default function Blog() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios
+      await axios
         .get(`${SERVER}/api/blog`, {
           withCredentials: true
         })
@@ -26,12 +26,11 @@ export default function Blog() {
           setLoading(false);
         })
         .catch((err) => err.response);
-        console.log('새로운',response);
     }
     fetchData();
   }, [loading]);
 
-  console.log(posts);
+  console.log([...posts]);
   console.log(loading);
 
   return (
