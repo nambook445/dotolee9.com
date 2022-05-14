@@ -23,6 +23,7 @@ app.use(
       "http://dotolee9.com",
       "http://www.dotolee9.com",
       "http://3.38.59.97:80",
+      "http://3.38.59.97:8080",
     ],
     credentials: true,
   })
