@@ -10,28 +10,23 @@ import { BlogPost } from '../sections/@dashboard/blog';
 import axios from 'axios';
 // utils
 import { SERVER } from '../utils/domain';
+// ----------------------------------------------------------------------
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      await axios
-        .get(`${SERVER}/api/blog`, {
-          withCredentials: true
-        })
-        .then((res) => {
-          setPosts(res.data);
-          setLoading(false);
-        })
-        .catch((err) => err.response);
-    }
-    fetchData();
-  }, [loading]);
-
-  console.log([...posts]);
-  console.log(loading);
+    setLoading(false);
+    axios
+      .get(`${SERVER}/api/blog`)
+      .then((res) => {
+        setPosts(res.data);
+        setLoading(false);
+      })
+      .catch((err) => err.response);
+  }, []);
+  console.log(posts);
 
   return (
     <Page title="Blog | DOTOLEE">
@@ -53,7 +48,7 @@ export default function Blog() {
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between"></Stack>
         <Grid container spacing={3}>
           {!loading &&
-            [...posts].map((posts) => {
+            posts.map((posts) => {
               return (
                 <BlogPost
                   key={posts.id}
