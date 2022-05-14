@@ -24,10 +24,10 @@ export default function Blog() {
       .then((res) => {
         setPosts(res.data);
         setLoading(false);
-        console.log(res.data);
       })
       .catch((err) => err.response);
   }, []);
+ console.log(posts)
 
   return (
     <Page title="Blog | DOTOLEE">
@@ -49,7 +49,7 @@ export default function Blog() {
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between"></Stack>
         <Grid container spacing={3}>
           {!loading
-            ? posts.map((posts) => {
+            ? [...posts].map((posts) => {
                 return (
                   <BlogPost
                     key={posts.id}
