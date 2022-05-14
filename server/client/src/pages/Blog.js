@@ -19,8 +19,7 @@ export default function Blog() {
     setLoading(false);
     axios
       .get(`${SERVER}/api/blog`, {
-        withCredentials: true,
-        headers: { 'Content-Type': 'application/json' }
+        withCredentials: true
       })
       .then((res) => {
         setPosts(res.data);
