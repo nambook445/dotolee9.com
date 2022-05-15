@@ -97,10 +97,14 @@ export default function PaperPage() {
       console.log(pair[0] + ', ' + pair[1]);
     }
     await axios
-      .post(`${SERVER}/api/paper`, data, {
-        withCredentials: true,
-        headers: { 'Content-Type': 'application/json' }
-      })
+      .post(
+        `${SERVER}/api/paper`,
+        { data },
+        {
+          withCredentials: true,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      )
       .then((res) => {
         MySwal.fire({
           icon: 'success',
