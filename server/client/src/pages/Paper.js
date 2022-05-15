@@ -88,18 +88,19 @@ export default function PaperPage() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let object = {};
     let data = new FormData();
     data.append('post_image', imgFile);
     data.set('title', e.target[0].value);
     data.set('description', desc);
     data.set('id', user.id);
-    for (let pair of data.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
+
     await axios
       .post(
         `${SERVER}/api/paper`,
-        { data },
+        data.forEach((value, key) => {
+          object[key] = value;
+        }),
         {
           withCredentials: true,
           headers: { 'Content-Type': 'application/json' }
