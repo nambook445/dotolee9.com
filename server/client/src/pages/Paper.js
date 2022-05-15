@@ -28,7 +28,7 @@ import axios from 'axios';
 import './Paper.css';
 // utils
 import { SERVER } from '../utils/domain';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 // ----------------------------------------------------------------------
 // //
 
@@ -68,7 +68,7 @@ export default function PaperPage() {
   const [desc, setdesc] = useState('');
   const [imgBase64, setImgBase64] = useState(null); // 파일 base64
   const [imgFile, setImgFile] = useState(null); //파일
-  const { user } = useSelector((state) => state.userData);
+  // const { user } = useSelector((state) => state.userData);
 
   const navigate = useNavigate();
 
@@ -103,7 +103,6 @@ export default function PaperPage() {
     data.append('post_image', imgFile);
     data.set('title', e.target[0].value);
     data.set('description', desc);
-    data.set('id', user.id)
     for (var pair of data.entries()) {
       console.log(pair[0] + ', ' + pair[1]);
     }

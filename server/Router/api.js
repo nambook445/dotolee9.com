@@ -26,7 +26,7 @@ router.get("/blog", (req, res) => {
   const sql = `SELECT topic.id, topic.title, topic.description, DATE_FORMAT(topic.created, '%Y-%m-%d') AS created, topic.image, users.nickname, users.image AS profile FROM topic LEFT JOIN users ON topic.user_id = users.id ORDER BY topic.id DESC `;
   db.query(sql, (err, results) => {
     const data = results;
-    console.log(data)
+    console.log(data);
     res.send(data);
   });
 });
@@ -102,14 +102,13 @@ router.delete("/topic", (req, res) => {
 // 페이퍼 라우터
 router.post("/paper", upload.single("post_image"), (req, res) => {
   console.log(req);
-  if (req.file.filename) {
+  if (req.file) {
     const imageSql = `INSERT INTO topic (title, description, created, user_id, image) VALUES(?, ?, NOW(), ?, ?)`;
     db.query(
       imageSql,
-      [req.body.title, req.body.description, req.body.id, req.file.filename],
+      [req.body.title, req.body.description, req.user, req.file.filename],
       (err, results) => {
         if (err) throw err;
-        console.log(req.file.filename);
         res.status(200).send("ok");
       }
     );
