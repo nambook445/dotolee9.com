@@ -20,6 +20,7 @@ import Page from '../components/Page';
 import Iconify from '../components/Iconify';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
 import { styled } from '@mui/material/styles';
 // axios
 import axios from 'axios';
@@ -27,8 +28,9 @@ import axios from 'axios';
 import './Paper.css';
 // utils
 import { SERVER } from '../utils/domain';
-import { useSelector } from 'react-redux';
-// ReactQuill
+// ----------------------------------------------------------------------
+// //
+
 const modules = {
   toolbar: [
     [{ font: [] }],
@@ -56,56 +58,57 @@ const formats = [
   'color',
   'background'
 ];
-// SweetAlert2
-const MySwal = withReactContent(Swal);
-// CSS
-const Input = styled('input')({
-  display: 'none'
-});
+
+// ----------------------------------------------------------------------
+
+// ----------------------------------------------------------------------
 
 export default function PaperPage() {
   const [desc, setdesc] = useState('');
   const [imgBase64, setImgBase64] = useState(null); // 파일 base64
   const [imgFile, setImgFile] = useState(null); //파일
-  const { user } = useSelector((state) => state.userData);
+
   const navigate = useNavigate();
 
-  const handleOnChange = (value) => {
+  const Input = styled('input')({
+    display: 'none'
+  });
+  // SweetAlert2
+  const MySwal = withReactContent(Swal);
+  function handleOnChange(value) {
     setdesc(value);
-  };
+  }
+
   const handleChangeFile = (e) => {
     let reader = new FileReader();
+
     reader.onloadend = () => {
+      // 2. 읽기가 완료되면 아래코드가 실행됩니다.
       const base64 = reader.result;
       if (base64) {
         setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
       }
     };
     if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]); // 파일을 읽어 버퍼에 저장합니다.
+      reader.readAsDataURL(e.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
       setImgFile(e.target.files[0]); // 파일 상태 업데이트
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let object = {};
     let data = new FormData();
     data.append('post_image', imgFile);
     data.set('title', e.target[0].value);
     data.set('description', desc);
-    data.set('id', user.id);
+    for (var pair of data.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
 
     await axios
-      .post(
-        `${SERVER}/api/paper`,
-        data.forEach((value, key) => {
-          object[key] = value;
-        }),
-        {
-          withCredentials: true,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      )
+      .post(`${SERVER}/api/paper`, data, {
+        withCredentials: true
+      })
       .then((res) => {
         MySwal.fire({
           icon: 'success',

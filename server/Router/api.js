@@ -109,7 +109,7 @@ router.post("/paper", upload.single("post_image"), (req, res) => {
       (err, results) => {
         if (err) throw err;
         console.log(req.file.filename);
-        res.status(200).json("ok");
+        res.status(200).send("ok");
       }
     );
   } else {
