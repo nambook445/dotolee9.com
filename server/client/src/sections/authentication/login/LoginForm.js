@@ -44,8 +44,7 @@ export default function LoginForm() {
       };
       await axios
         .post(`${SERVER}/user/login`, data, {
-          withCredentials: true,
-          headers: { 'Content-Type': 'application/json' }
+          withCredentials: true
         })
         .then((res) => {
           dispatch({

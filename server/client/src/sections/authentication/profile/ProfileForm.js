@@ -62,8 +62,7 @@ export default function ProfileForm() {
       setIsSubmitting(true);
       await axios
         .put(`${SERVER}/user/profile`, data, {
-          withCredentials: true,
-          headers: { 'Content-Type': 'application/json' }
+          withCredentials: true
         })
         .then((res) => {
           dispatch({

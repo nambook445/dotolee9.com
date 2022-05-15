@@ -18,9 +18,7 @@ export default function Blog() {
 
   useEffect(() => {
     axios
-      .get(`${SERVER}/api/blog`, {
-        header: { 'Content-Type': 'application/json' }
-      })
+      .get(`${SERVER}/api/blog`)
       .then((res) => {
         setPosts(res.data);
         setLoading(false);

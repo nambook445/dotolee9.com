@@ -132,8 +132,7 @@ export default function TopicPage() {
     data.set('imageFileNameFromServer', imageFileNameFromServer);
     await axios
       .put(`${SERVER}/api/topic`, data, {
-        withCredentials: true,
-        headers: { 'Content-Type': 'application/json' }
+        withCredentials: true
       })
       .then((res) => {
         console.log(res);

@@ -62,8 +62,7 @@ export default function RegisterForm() {
       };
       await axios
         .post(`${SERVER}/user/resister`, data, {
-          withCredentials: true,
-          headers: { 'Content-Type': 'application/json' }
+          withCredentials: true
         })
         .then((res) => {
           dispatch({
