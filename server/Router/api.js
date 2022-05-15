@@ -27,7 +27,7 @@ router.get("/blog", (req, res) => {
   db.query(sql, (err, results) => {
     const data = results;
     console.log(data)
-    res.json(data);
+    res.send(data);
   });
 });
 // 상세보기 라우터
@@ -101,6 +101,7 @@ router.delete("/topic", (req, res) => {
 });
 // 페이퍼 라우터
 router.post("/paper", upload.single("post_image"), (req, res) => {
+  console.log(req);
   if (req.file.filename) {
     const imageSql = `INSERT INTO topic (title, description, created, user_id, image) VALUES(?, ?, NOW(), ?, ?)`;
     db.query(
