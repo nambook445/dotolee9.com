@@ -101,14 +101,15 @@ router.delete("/topic", (req, res) => {
 });
 // 페이퍼 라우터
 router.post("/paper", upload.single("post_image"), (req, res) => {
-  if (req.file) {
+  if (req.file.filename) {
     const imageSql = `INSERT INTO topic (title, description, created, user_id, image) VALUES(?, ?, NOW(), ?, ?)`;
     db.query(
       imageSql,
       [req.body.title, req.body.description, req.body.id, req.file.filename],
       (err, results) => {
         if (err) throw err;
-        res.status(200).send("ok");
+        console.log(req.file.filename);
+        res.status(200).json("ok");
       }
     );
   } else {

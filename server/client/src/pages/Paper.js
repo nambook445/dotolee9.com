@@ -93,7 +93,7 @@ export default function PaperPage() {
     data.set('title', e.target[0].value);
     data.set('description', desc);
     data.set('id', user.id);
-    for (const pair of data.entries()) {
+    for (let pair of data.entries()) {
       console.log(pair[0] + ', ' + pair[1]);
     }
     await axios
