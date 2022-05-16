@@ -85,7 +85,7 @@ router.put("/profile", (req, res) => {
   const sql = `SELECT * FROM users WHERE username=?`;
   db.query(sql, [req.body.username], (err, results) => {
     if (err) return err;
-    if (results) {
+    if (results !== undefined) {
       bcrypt.compare(req.body.password, results[0].password, (err, results) => {
         if (results) {
           bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -100,7 +100,7 @@ router.put("/profile", (req, res) => {
                   db.query(sql, [req.body.username], (err, results) => {
                     if (err) return err;
                     const user = results[0];
-                    res.send(user);
+                    res.json(user);
                   });
                 }
               );
