@@ -27,7 +27,7 @@ router.get("/blog", (req, res) => {
   db.query(sql, (err, results) => {
     const data = results;
     console.log(data);
-    res.send(data);
+    res.json(data);
   });
 });
 // 상세보기 라우터
@@ -37,7 +37,7 @@ router.get("/topic", (req, res) => {
     if (err) {
       throw err;
     }
-    res.send({
+    res.json({
       topic: results,
       length: results.length,
     });
@@ -47,7 +47,7 @@ router.post("/topic", (req, res) => {
   const sql = `SELECT topic.id, topic.title, topic.description, DATE_FORMAT(topic.created, '%Y-%m-%d') AS created, topic.user_id, topic.image, users.nickname, users.image AS profile FROM topic LEFT JOIN users ON topic.user_id = users.id WHERE topic.id=? `;
   db.query(sql, [req.body.id], (err, results) => {
     const data = results;
-    res.send(data);
+    res.json(data);
   });
 });
 router.put("/topic", upload.single("post_image"), (req, res) => {
