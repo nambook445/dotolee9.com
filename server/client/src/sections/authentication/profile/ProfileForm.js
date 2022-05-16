@@ -21,7 +21,7 @@ export default function ProfileForm() {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.userData);
   const [showPassword, setShowPassword] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
   // SweetAlert2
   const MySwal = withReactContent(Swal);
 
@@ -60,7 +60,7 @@ export default function ProfileForm() {
         nickname: value.nickname
       };
       console.log(data);
-      setIsSubmitting(true);
+      // setIsSubmitting(true);
       await axios
         .put(`${SERVER}/user/profile`, data, {
           withCredentials: true
@@ -88,7 +88,7 @@ export default function ProfileForm() {
           navigate('/app', { replace: true });
         })
         .catch((err) => {
-          setIsSubmitting(false);
+          // setIsSubmitting(false);
           MySwal.fire({
             icon: 'error',
             title: JSON.stringify(err.response.data)
@@ -148,7 +148,7 @@ export default function ProfileForm() {
             size="large"
             type="submit"
             variant="contained"
-            loading={isSubmitting}
+            // loading={isSubmitting}
           >
             정보 수정하기
           </LoadingButton>
