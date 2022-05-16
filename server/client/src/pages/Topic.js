@@ -107,52 +107,58 @@ export default function TopicPage() {
 
   const handleChangeFile = (e) => {
     e.preventDefault();
-    setStatus(true);
-    setImageUpdate(true);
-    let reader = new FileReader();
-    reader.onloadend = () => {
-      const base64 = reader.result;
-      if (base64) {
-        setImgBase64(base64.toString());
+    function handleImage() {
+      setStatus(true);
+      setImageUpdate(true);
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        const base64 = reader.result;
+        if (base64) {
+          setImgBase64(base64.toString());
+        }
+      };
+      if (e.target.files[0]) {
+        reader.readAsDataURL(e.target.files[0]);
+        setImgFile(e.target.files[0]);
       }
-    };
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      setImgFile(e.target.files[0]);
     }
+    handleImage();
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    let data = new FormData();
-    data.append('post_image', imgFile);
-    data.set('id', id);
-    data.set('title', e.target[0].value);
-    data.set('description', desc);
-    data.set('imageFileNameFromServer', imageFileNameFromServer);
-    await axios
-      .put(`${SERVER}/api/topic`, data, {
-        withCredentials: true
-      })
-      .then((res) => {
-        console.log(res);
-        MySwal.fire({
-          icon: 'success',
-          title: '수정완료',
-          showConfirmButton: false,
-          timer: 1500
-        }).then(navigate('/blog'));
-      })
-      .catch((err) =>
-        MySwal.fire({
-          icon: 'error',
-          title: JSON.stringify(err.response)
+    async function fetchData() {
+      let data = new FormData();
+      data.append('post_image', imgFile);
+      data.set('id', id);
+      data.set('title', e.target[0].value);
+      data.set('description', desc);
+      data.set('imageFileNameFromServer', imageFileNameFromServer);
+      await axios
+        .put(`${SERVER}/api/topic`, data, {
+          withCredentials: true
         })
-      );
+        .then((res) => {
+          console.log(res);
+          MySwal.fire({
+            icon: 'success',
+            title: '수정완료',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(navigate('/blog'));
+        })
+        .catch((err) =>
+          MySwal.fire({
+            icon: 'error',
+            title: JSON.stringify(err.response)
+          })
+        );
+    }
+    fetchData();
   };
 
   function CardImage(props) {
-    if (imageFileNameFromServer !== null) {
+    if (imageFileNameFromServer != null) {
       return (
         <CardMedia
           sx={{ width: '100%', height: 'auto' }}
@@ -171,7 +177,7 @@ export default function TopicPage() {
           sx={{ width: '100%', height: 'auto' }}
           component="img"
           height="140"
-          src={`${SERVER}static/assets/basic-post.jpg`}
+          src={`${SERVER}/images/post/null.jpg`}
         />
       );
     }
