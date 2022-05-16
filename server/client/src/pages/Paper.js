@@ -109,7 +109,7 @@ export default function PaperPage() {
     }
 
     await axios
-      .post(`${SERVER}/api/paper`, data, {
+      .post('http://3.38.59.97:8080/api/paper/', data, {
         withCredentials: true
       })
       .then((res) => {
