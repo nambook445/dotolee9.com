@@ -10,7 +10,7 @@ const saltRounds = 10;
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, "./public/images/profile");
+    callBack(null, "./public/images/profile"); // './public/images/' directory name where save the file
   },
   filename: (req, file, callBack) => {
     callBack(
@@ -61,7 +61,7 @@ router.post("/resister", (req, res) => {
               var user = results[0];
               req.logIn(user, function (err) {
                 if (err) return next(err);
-                return res.json(req.user);
+                return res.send(req.user);
               });
             }
           });
@@ -77,7 +77,7 @@ router.post("/profile", upload.single("profile_image"), function (req, res) {
   db.query(update_sql, [profile_image, req.user], function (err, results) {
     if (err) throw err;
   });
-  res.json({
+  res.send({
     fileName: req.file.filename,
   });
 });
@@ -100,7 +100,7 @@ router.put("/profile", (req, res) => {
                   db.query(sql, [req.body.username], (err, results) => {
                     if (err) return err;
                     const user = results[0];
-                    res.json(user);
+                    res.send(user);
                   });
                 }
               );

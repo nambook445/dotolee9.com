@@ -15,8 +15,6 @@ import withReactContent from 'sweetalert2-react-content';
 // component
 import Iconify from '../../../components/Iconify';
 import { useDispatch, useSelector } from 'react-redux';
-// SweetAlert2
-const MySwal = withReactContent(Swal);
 
 export default function ProfileForm() {
   const dispatch = useDispatch();
@@ -24,6 +22,8 @@ export default function ProfileForm() {
   const { user } = useSelector((state) => state.userData);
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // SweetAlert2
+  const MySwal = withReactContent(Swal);
 
   const RegisterSchema = Yup.object().shape({
     username: Yup.string()
@@ -59,6 +59,7 @@ export default function ProfileForm() {
         newPassword: value.newPassword,
         nickname: value.nickname
       };
+      console.log(data);
       setIsSubmitting(true);
       await axios
         .put(`${SERVER}/user/profile`, data, {

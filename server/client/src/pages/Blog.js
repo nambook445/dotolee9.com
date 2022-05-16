@@ -17,6 +17,7 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(false);
     axios
       .get(`${SERVER}/api/blog`)
       .then((res) => {

@@ -22,15 +22,16 @@ import withReactContent from 'sweetalert2-react-content';
 import Iconify from '../../../components/Iconify';
 // ----------------------------------------------------------------------
 import { useDispatch } from 'react-redux';
+
 import { SERVER } from '../../../utils/domain';
-// SweetAlert2
-const MySwal = withReactContent(Swal);
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
+  // SweetAlert2
+  const MySwal = withReactContent(Swal);
+  // formik remember 사용법은 아직...
   const formik = useFormik({
     initialValues: {
       username: '',
