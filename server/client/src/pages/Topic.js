@@ -131,7 +131,7 @@ export default function TopicPage() {
     data.set('description', desc);
     data.set('imageFileNameFromServer', imageFileNameFromServer);
     await axios
-      .put('http://3.38.59.97:8080/api/topic', data, {
+      .put(`${SERVER}/api/topic`, data, {
         withCredentials: true
       })
       .then((res) => {
