@@ -20,7 +20,7 @@ export default function Login() {
           <Typography variant="h4" gutterBottom>
             LOGIN
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>ID: admin / Password: 111111</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>ID: dotolee / Password: 111111</Typography>
         </Stack>
 
         <LoginForm />
