@@ -32,7 +32,7 @@ router.post("/login", async function (req, res, next) {
     req.logIn(user, function (err) {
       console.log(req.user);
       if (err) return next(err);
-      return res.json(req.user);
+      return res.status(200).json(req.user);
     });
   })(req, res, next);
 });
@@ -61,7 +61,7 @@ router.post("/resister", (req, res) => {
               var user = results[0];
               req.logIn(user, function (err) {
                 if (err) return next(err);
-                return res.send(req.user);
+                return res.status(201).send(req.user);
               });
             }
           });
@@ -74,7 +74,7 @@ router.post("/resister", (req, res) => {
 router.post("/profile", upload.single("profile_image"), function (req, res) {
   const profile_image = req.file.filename;
   const update_sql = `UPDATE users SET image=? WHERE id=?`;
-  db.query(update_sql, [profile_image, req.user], function (err, results) {
+  db.query(update_sql, [profile_image, req.body.id], function (err, results) {
     if (err) throw err;
   });
   res.send({
@@ -100,7 +100,7 @@ router.put("/profile", (req, res) => {
                   db.query(sql, [req.body.username], (err, results) => {
                     if (err) return err;
                     const user = results[0];
-                    res.json(user);
+                    res.status(201).json(user);
                   });
                 }
               );

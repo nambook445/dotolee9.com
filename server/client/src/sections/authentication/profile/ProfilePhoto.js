@@ -18,6 +18,7 @@ export default function ProfilePhoto() {
   async function handleUpload(e) {
     const formData = new FormData();
     formData.append('profile_image', e.target.files[0]);
+    formData.set('id', user.id);
     await axios
       .post(`${SERVER}/user/profile`, formData, { withCredentials: true })
       .then((res) => {

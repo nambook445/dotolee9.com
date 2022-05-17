@@ -36,7 +36,7 @@ router.get("/topic", (req, res) => {
     if (err) {
       throw err;
     }
-    res.send({
+    res.status(200).json({
       topic: results,
       length: results.length,
     });
@@ -46,7 +46,7 @@ router.post("/topic", (req, res) => {
   const sql = `SELECT topic.id, topic.title, topic.description, DATE_FORMAT(topic.created, '%Y-%m-%d') AS created, topic.user_id, topic.image, users.nickname, users.image AS profile FROM topic LEFT JOIN users ON topic.user_id = users.id WHERE topic.id=? `;
   db.query(sql, [req.body.id], (err, results) => {
     const data = results;
-    res.json(data);
+    res.status(201).json(data);
   });
 });
 router.put("/topic", upload.single("post_image"), (req, res) => {
@@ -56,7 +56,7 @@ router.put("/topic", upload.single("post_image"), (req, res) => {
       sql,
       [req.body.title, req.body.description, Number(req.body.id)],
       (err, results) => {
-        res.status(200).send("ok");
+        res.status(201).send("ok");
       }
     );
   } else if (req.file.filename) {
@@ -73,7 +73,7 @@ router.put("/topic", upload.single("post_image"), (req, res) => {
         if (err) {
           console.log(err);
         }
-        res.status(200).send("ok");
+        res.status(201).send("ok");
       }
     );
     fs.unlink(
@@ -95,7 +95,7 @@ router.delete("/topic", (req, res) => {
     if (err) {
       throw err;
     }
-    res.send("ok");
+    res.status(200).send("ok");
   });
 });
 // 페이퍼 라우터
@@ -108,7 +108,7 @@ router.post("/paper", upload.single("post_image"), (req, res) => {
       [req.body.title, req.body.description, req.body.id, req.file.filename],
       (err, results) => {
         if (err) throw err;
-        res.status(200).json("ok");
+        res.status(201).json("ok");
       }
     );
   } else {
@@ -118,7 +118,7 @@ router.post("/paper", upload.single("post_image"), (req, res) => {
       [req.body.title, req.body.description, req.body.id],
       (err, results) => {
         if (err) throw err;
-        res.status(200).json("ok");
+        res.status(201).json("ok");
       }
     );
   }
