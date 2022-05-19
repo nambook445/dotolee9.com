@@ -26,7 +26,6 @@ export default function Blog() {
       })
       .catch((err) => err.response);
   }, []);
-  console.log(posts);
 
   return (
     <Page title="Blog | DOTOLEE">

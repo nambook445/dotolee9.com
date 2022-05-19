@@ -66,7 +66,6 @@ export default function RegisterForm() {
           withCredentials: true
         })
         .then((res) => {
-          console.log(res.data);
           dispatch({
             type: 'USER',
             user: {

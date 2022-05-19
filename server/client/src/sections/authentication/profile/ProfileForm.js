@@ -60,7 +60,6 @@ export default function ProfileForm() {
         newPassword: value.newPassword,
         nickname: value.nickname
       };
-      console.log(data);
       // setIsSubmitting(true);
       await axios
         .put(`${SERVER}/user/profile`, data, {

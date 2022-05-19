@@ -104,9 +104,6 @@ export default function PaperPage() {
     data.set('title', e.target[0].value);
     data.set('description', desc);
     data.set('id', user.id);
-    for (var pair of data.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
 
     await axios
       .post(`${SERVER}/api/paper`, data, {

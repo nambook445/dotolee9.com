@@ -22,7 +22,6 @@ export default function ProfilePhoto() {
     await axios
       .post(`${SERVER}/user/profile`, formData, { withCredentials: true })
       .then((res) => {
-        console.log(res);
         dispatch({
           type: 'USER',
           user: {
